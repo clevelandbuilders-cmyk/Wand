@@ -293,26 +293,6 @@ linear-gradient(180deg,#0d0720 0%,#1a0f3e 50%,#0d0720 100%)}
 .toast.show{transform:translateX(-50%) translateY(0)}
 .browser-warn{position:fixed;top:calc(8px + var(–sat));left:10px;right:10px;background:rgba(100,40,0,.92);border:1px solid rgba(201,100,20,.45);border-radius:var(–r);padding:9px 13px;font-size:.74rem;color:rgba(255,180,100,.9);z-index:500;display:none;backdrop-filter:blur(10px)}
 .browser-warn.show{display:block}
-
-/* ═══ CEREMONY SCREEN ═══ */
-#ceremony{background:#000;justify-content:center;align-items:center}
-.cer-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.4}
-.cer-overlay{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(80,40,160,.3),rgba(0,0,0,.85))}
-.cer-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:space-between;width:100%;height:100%;padding:calc(60px + var(–sat)) 20px calc(40px + var(–sab))}
-.cer-titles{text-align:center}
-.cer-title{font-family:‘Cinzel’,serif;font-size:1.4rem;color:var(–gold);letter-spacing:.1em;text-shadow:0 0 30px rgba(201,168,76,.8);opacity:0;animation:fadeInUp 1s ease .5s forwards}
-.cer-sub{font-family:‘Cinzel’,serif;font-size:.75rem;color:rgba(201,168,76,.55);letter-spacing:.22em;text-transform:uppercase;margin-top:6px;opacity:0;animation:fadeInUp 1s ease .9s forwards}
-.cer-wand-wrap{position:relative;width:220px;height:320px;flex-shrink:0}
-.cer-box-img{width:100%;position:absolute;bottom:0;left:0;filter:drop-shadow(0 0 20px rgba(201,168,76,.3));opacity:0;animation:sUp .8s ease 1.2s forwards}
-.cer-wand-img{width:55%;position:absolute;bottom:38%;left:22.5%;filter:drop-shadow(0 0 30px rgba(201,168,76,.5));opacity:0;transform:translateY(70px);transition:all 1.4s cubic-bezier(.16,1,.3,1)}
-.cer-wand-img.rise{opacity:1;transform:translateY(0);filter:drop-shadow(0 0 50px rgba(201,168,76,.9))}
-.cer-bottom{display:flex;flex-direction:column;align-items:center;gap:14px}
-.cer-hint{font-family:‘Crimson Text’,serif;font-size:.9rem;color:var(–text2);text-align:center;font-style:italic;animation:hintBlink 2.5s ease-in-out infinite}
-.cer-connect-btn{padding:13px 28px;background:linear-gradient(135deg,var(–house-p),rgba(201,168,76,.15));border:1px solid var(–house-s);border-radius:28px;color:var(–gold2);font-family:‘Cinzel’,serif;font-size:.82rem;cursor:pointer;letter-spacing:.06em;display:none}
-.cer-connect-btn.show{display:block}
-.cer-skip{font-family:‘Cinzel’,serif;font-size:.65rem;color:var(–text3);letter-spacing:.1em;cursor:pointer;padding:8px}
-.cer-glow{position:absolute;left:50%;top:30%;transform:translate(-50%,-50%);width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,.4),transparent);opacity:0;transition:opacity 1s;pointer-events:none}
-.cer-glow.on{opacity:1;animation:orbPulse 2s ease-in-out infinite}
 </style>
 
 </head>
@@ -324,29 +304,6 @@ linear-gradient(180deg,#0d0720 0%,#1a0f3e 50%,#0d0720 100%)}
 <div class="screen active" id="splash">
   <video id="splashVideo" autoplay muted playsinline></video>
   <div class="splash-logo"><h1>Harry Potter</h1><p>Magic Caster Wand</p></div>
-</div>
-
-<!-- CEREMONY -->
-
-<div class="screen" id="ceremony">
-  <img class="cer-bg" src="assets/images/ui/login_bg.webp" alt="">
-  <div class="cer-overlay"></div>
-  <div class="cer-content">
-    <div class="cer-titles">
-      <div class="cer-title">Harry Potter</div>
-      <div class="cer-sub">Magic Caster Wand</div>
-    </div>
-    <div class="cer-wand-wrap">
-      <div class="cer-glow" id="cerGlow"></div>
-      <img class="cer-box-img" id="cerBoxImg" src="assets/images/ui/wand_box_list.webp" alt="">
-      <img class="cer-wand-img" id="cerWandImg" src="assets/images/ui/wand_defiant_list.webp" alt="">
-    </div>
-    <div class="cer-bottom">
-      <div class="cer-hint" id="cerHint">Open the box to begin your journey</div>
-      <button class="cer-connect-btn" id="cerConnectBtn" onclick="connectBoxBLE()">🪄 Connect Box</button>
-      <div class="cer-skip" onclick="skipCeremony()">Skip →</div>
-    </div>
-  </div>
 </div>
 
 <!-- PROFILE SETUP -->
@@ -614,27 +571,27 @@ const SPELL_GESTURE_PATHS = {
 };
 
 const SPELLS = [
-  {key:'lumos',name:'Lumos',pronounce:'LOO-mos',emoji:'💡',color:'#ffe87a',led:'FFFF88',type:'Charm',yr:1,xp:10,atk:0,def:0,lore:'The Wand-Lighting Charm, one of the first spells taught at Hogwarts. A sharp upward flick illuminates the wand tip with a pure white light.',howTo:'How to cast: Flick your wand sharply <strong>upward</strong> like pointing at the ceiling.'},
-  {key:'nox',name:'Nox',pronounce:'NOCKS',emoji:'🌑',color:'#5a5aaa',led:'000000',type:'Charm',yr:1,xp:10,atk:0,def:0,lore:'Counter-charm to Lumos. A downward flick extinguishes the wand light, returning the world to darkness.',howTo:'How to cast: Flick your wand sharply <strong>downward</strong> toward the floor.'},
-  {key:'alohomora',name:'Alohomora',pronounce:'al-OH-ho-MOR-ah',emoji:'🗝️',color:'#c0a060',led:'AA6611',type:'Charm',yr:1,xp:10,atk:0,def:0,lore:'The Unlocking Charm. A clockwise twist opens any locked door.',howTo:'How to cast: Rotate your wand in a <strong>clockwise circle</strong> like turning a key.'},
-  {key:'scourgify',name:'Scourgify',pronounce:'SKUR-jih-fy',emoji:'🧹',color:'#aaffee',led:'88DDCC',type:'Charm',yr:1,xp:10,atk:0,def:0,lore:'A cleaning charm that removes dirt from any surface.',howTo:'How to cast: <strong>Wave your wand</strong> gently back and forth.'},
-  {key:'expelliarmus',name:'Expelliarmus',pronounce:'ex-PEL-ee-AR-mus',emoji:'💥',color:'#e05050',led:'FF2200',type:'Charm',yr:1,xp:15,atk:25,def:0,lore:'The Disarming Charm — Harry\'s signature spell. Forces the target to drop whatever they hold.',howTo:'How to cast: Sweep your wand to the <strong>right</strong> then pull sharply <strong>down</strong> like a J shape.'},
-  {key:'wingardium_leviosa',name:'Wingardium Leviosa',pronounce:'win-GAR-dee-um leh-vee-OH-sah',emoji:'🪶',color:'#80c0ff',led:'4488FF',type:'Charm',yr:2,xp:20,atk:0,def:0,lore:'The Levitation Charm. Swish and flick! Levi-O-sa, not Levio-SA!',howTo:'How to cast: Swoop your wand to the <strong>left</strong> in a wide arc then flick it <strong>upward</strong>.'},
-  {key:'reparo',name:'Reparo',pronounce:'reh-PAR-oh',emoji:'🔧',color:'#80ffb0',led:'44AA66',type:'Charm',yr:2,xp:15,atk:0,def:0,lore:'The Mending Charm. A figure-eight motion repairs broken objects.',howTo:'How to cast: Draw a smooth <strong>figure-8</strong> in the air — loop right, cross over, loop left.'},
-  {key:'accio',name:'Accio',pronounce:'AK-ee-oh',emoji:'🌀',color:'#c080ff',led:'8844CC',type:'Charm',yr:2,xp:15,atk:0,def:0,lore:'The Summoning Charm. A sweeping arc draws any named object to your hand.',howTo:'How to cast: Make a wide sweeping arc <strong>pulling toward you</strong> like drawing something in.'},
-  {key:'stupefy',name:'Stupefy',pronounce:'STOO-peh-fy',emoji:'⚡',color:'#ff4080',led:'FF2255',type:'Jinx',yr:2,xp:25,atk:35,def:0,lore:'The Stunning Spell. A sharp forward jab sends a bolt of red light that renders the target unconscious.',howTo:'How to cast: <strong>Jab your wand forward</strong> sharply at your target.'},
-  {key:'protego',name:'Protego',pronounce:'pro-TAY-go',emoji:'🛡️',color:'#d0d0ff',led:'AAAAEE',type:'Charm',yr:3,xp:20,atk:0,def:40,lore:'The Shield Charm. A wide sweeping arc creates an invisible barrier.',howTo:'How to cast: Sweep your wand in a wide arc <strong>from left to right</strong> in front of you.'},
-  {key:'revelio',name:'Revelio',pronounce:'reh-VEL-ee-oh',emoji:'👁️',color:'#ffd080',led:'CC8822',type:'Charm',yr:3,xp:20,atk:0,def:0,lore:'The Revealing Charm. A circle and tap reveals hidden objects and people.',howTo:'How to cast: Draw a <strong>clockwise circle</strong> in the air then flick <strong>downward</strong>.'},
-  {key:'riddikulus',name:'Riddikulus',pronounce:'rih-DIK-yoo-lus',emoji:'🎪',color:'#ffcc44',led:'FFCC44',type:'Charm',yr:3,xp:20,atk:0,def:0,lore:'Defeats a Boggart by making it funny. Think of something hilarious!',howTo:'How to cast: Give your wand a sharp <strong>upward flick</strong> while thinking of something funny.'},
-  {key:'incendio',name:'Incendio',pronounce:'in-SEN-dee-oh',emoji:'🔥',color:'#ff6020',led:'CC4400',type:'Charm',yr:3,xp:20,atk:20,def:0,lore:'The Fire-Making Spell. A thrust produces a jet of flame.',howTo:'How to cast: <strong>Thrust your wand forward</strong> toward your target.'},
-  {key:'aguamenti',name:'Aguamenti',pronounce:'ah-GWAH-men-tee',emoji:'💧',color:'#40a0ff',led:'2266AA',type:'Charm',yr:3,xp:15,atk:0,def:0,lore:'The Water-Making Spell. A flowing wave produces a jet of water.',howTo:'How to cast: <strong>Wave your wand</strong> gently from side to side like flowing water.'},
-  {key:'expecto_patronum',name:'Expecto Patronum',pronounce:'ex-PEK-toh pah-TROH-num',emoji:'🦌',color:'#a0d8ff',led:'88CCFF',type:'Charm',yr:4,xp:50,atk:0,def:60,lore:'The most powerful defensive spell. A spiral channels your happiest memory into a silver guardian.',howTo:'How to cast: Make a large <strong>clockwise spiral</strong> then thrust forward. Think of your happiest memory.'},
-  {key:'confringo',name:'Confringo',pronounce:'con-FRING-oh',emoji:'💣',color:'#ff4400',led:'FF2200',type:'Curse',yr:4,xp:30,atk:45,def:0,lore:'The Blasting Curse. A powerful thrust causes violent explosions.',howTo:'How to cast: Drive your wand <strong>powerfully forward</strong> like an explosion.'},
-  {key:'petrificus_totalus',name:'Petrificus Totalus',pronounce:'pe-TRIF-i-cus to-TAY-lus',emoji:'🪨',color:'#aaaaaa',led:'888888',type:'Curse',yr:4,xp:25,atk:30,def:0,lore:'Full Body-Bind Curse. The target\'s limbs snap together rigid as a board.',howTo:'How to cast: <strong>Thrust your wand straight forward</strong> in one stiff motion.'},
-  {key:'bombarda',name:'Bombarda',pronounce:'bom-BAR-dah',emoji:'💥',color:'#ff6600',led:'FF4400',type:'Charm',yr:5,xp:30,atk:40,def:0,lore:'The Exploding Charm. Targeted explosions blast through walls.',howTo:'How to cast: <strong>Thrust your wand forward</strong> with as much force as you can.'},
-  {key:'impedimenta',name:'Impedimenta',pronounce:'im-ped-ih-MEN-tah',emoji:'🛑',color:'#ff8844',led:'FF6622',type:'Jinx',yr:5,xp:20,atk:15,def:20,lore:'The Impediment Jinx. Slows or stops the target.',howTo:'How to cast: Give a firm <strong>forward push</strong> with your wand.'},
-  {key:'flipendo',name:'Flipendo',pronounce:'flih-PEN-doh',emoji:'🔄',color:'#88aaff',led:'4466FF',type:'Jinx',yr:6,xp:25,atk:20,def:0,lore:'The Knockback Jinx. Sends targets flying backward.',howTo:'How to cast: <strong>Jab your wand forward</strong> quickly — speed is everything.'},
-  {key:'colovaria',name:'Colovaria',pronounce:'col-oh-VAR-ee-ah',emoji:'🌈',color:'#ff88ff',led:'FF44FF',type:'Charm',yr:7,xp:30,atk:0,def:0,lore:'The Colour-Change Charm. Shifts colour through the entire spectrum.',howTo:'How to cast: Draw a smooth flowing <strong>figure-8</strong> in the air.'},
+  {key:'lumos',name:'Lumos',pronounce:'LOO-mos',emoji:'💡',color:'#ffe87a',led:'FFFF88',type:'Charm',yr:1,xp:10,atk:0,def:0,lore:'The Wand-Lighting Charm, one of the first spells taught at Hogwarts. A sharp upward flick illuminates the wand tip with a pure white light.',howTo:'<strong>Hold</strong> the touch sensor. Flick wand sharply <strong>upward</strong>. <strong>Release</strong> at the top.'},
+  {key:'nox',name:'Nox',pronounce:'NOCKS',emoji:'🌑',color:'#5a5aaa',led:'000000',type:'Charm',yr:1,xp:10,atk:0,def:0,lore:'Counter-charm to Lumos. A downward flick extinguishes the wand light, returning the world to darkness.',howTo:'<strong>Hold</strong> the sensor. Flick wand sharply <strong>downward</strong>. <strong>Release</strong>.'},
+  {key:'alohomora',name:'Alohomora',pronounce:'al-OH-ho-MOR-ah',emoji:'🗝️',color:'#c0a060',led:'AA6611',type:'Charm',yr:1,xp:10,atk:0,def:0,lore:'The Unlocking Charm. A clockwise twist opens any locked door.',howTo:'<strong>Hold</strong> the sensor. Twist wand <strong>clockwise</strong> like turning a key. <strong>Release</strong>.'},
+  {key:'scourgify',name:'Scourgify',pronounce:'SKUR-jih-fy',emoji:'🧹',color:'#aaffee',led:'88DDCC',type:'Charm',yr:1,xp:10,atk:0,def:0,lore:'A cleaning charm that removes dirt from any surface.',howTo:'<strong>Hold</strong> the sensor. <strong>Wave gently</strong> back and forth. <strong>Release</strong>.'},
+  {key:'expelliarmus',name:'Expelliarmus',pronounce:'ex-PEL-ee-AR-mus',emoji:'💥',color:'#e05050',led:'FF2200',type:'Charm',yr:1,xp:15,atk:25,def:0,lore:'The Disarming Charm — Harry\'s signature spell. Forces the target to drop whatever they hold.',howTo:'<strong>Hold</strong> the sensor. Sweep <strong>right</strong> then sharply <strong>down</strong>. <strong>Release</strong>.'},
+  {key:'wingardium_leviosa',name:'Wingardium Leviosa',pronounce:'win-GAR-dee-um leh-vee-OH-sah',emoji:'🪶',color:'#80c0ff',led:'4488FF',type:'Charm',yr:2,xp:20,atk:0,def:0,lore:'The Levitation Charm. Swish and flick! Levi-O-sa, not Levio-SA!',howTo:'<strong>Hold</strong> the sensor. Swoop <strong>left</strong> then flick <strong>upward</strong>. <strong>Release</strong>.'},
+  {key:'reparo',name:'Reparo',pronounce:'reh-PAR-oh',emoji:'🔧',color:'#80ffb0',led:'44AA66',type:'Charm',yr:2,xp:15,atk:0,def:0,lore:'The Mending Charm. A figure-eight motion repairs broken objects.',howTo:'<strong>Hold</strong> the sensor. Draw a smooth <strong>figure-8</strong> in the air. <strong>Release</strong>.'},
+  {key:'accio',name:'Accio',pronounce:'AK-ee-oh',emoji:'🌀',color:'#c080ff',led:'8844CC',type:'Charm',yr:2,xp:15,atk:0,def:0,lore:'The Summoning Charm. A sweeping arc draws any named object to your hand.',howTo:'<strong>Hold</strong> the sensor. Wide arc <strong>pulling inward</strong> toward your chest. <strong>Release</strong>.'},
+  {key:'stupefy',name:'Stupefy',pronounce:'STOO-peh-fy',emoji:'⚡',color:'#ff4080',led:'FF2255',type:'Jinx',yr:2,xp:25,atk:35,def:0,lore:'The Stunning Spell. A sharp forward jab sends a bolt of red light that renders the target unconscious.',howTo:'<strong>Hold</strong> the sensor. <strong>Jab sharply forward</strong> then yank back. <strong>Release</strong>.'},
+  {key:'protego',name:'Protego',pronounce:'pro-TAY-go',emoji:'🛡️',color:'#d0d0ff',led:'AAAAEE',type:'Charm',yr:3,xp:20,atk:0,def:40,lore:'The Shield Charm. A wide sweeping arc creates an invisible barrier.',howTo:'<strong>Hold</strong> the sensor. Wide arc <strong>left to right</strong>. <strong>Release</strong>.'},
+  {key:'revelio',name:'Revelio',pronounce:'reh-VEL-ee-oh',emoji:'👁️',color:'#ffd080',led:'CC8822',type:'Charm',yr:3,xp:20,atk:0,def:0,lore:'The Revealing Charm. A circle and tap reveals hidden objects and people.',howTo:'<strong>Hold</strong> the sensor. Draw a <strong>clockwise circle</strong> then tap <strong>down</strong>. <strong>Release</strong>.'},
+  {key:'riddikulus',name:'Riddikulus',pronounce:'rih-DIK-yoo-lus',emoji:'🎪',color:'#ffcc44',led:'FFCC44',type:'Charm',yr:3,xp:20,atk:0,def:0,lore:'Defeats a Boggart by making it funny. Think of something hilarious!',howTo:'<strong>Hold</strong> the sensor. Sharp <strong>upward flick</strong> while thinking of something funny. <strong>Release</strong>!'},
+  {key:'incendio',name:'Incendio',pronounce:'in-SEN-dee-oh',emoji:'🔥',color:'#ff6020',led:'CC4400',type:'Charm',yr:3,xp:20,atk:20,def:0,lore:'The Fire-Making Spell. A thrust produces a jet of flame.',howTo:'<strong>Hold</strong> the sensor. <strong>Thrust forward</strong> sharply. <strong>Release</strong>.'},
+  {key:'aguamenti',name:'Aguamenti',pronounce:'ah-GWAH-men-tee',emoji:'💧',color:'#40a0ff',led:'2266AA',type:'Charm',yr:3,xp:15,atk:0,def:0,lore:'The Water-Making Spell. A flowing wave produces a jet of water.',howTo:'<strong>Hold</strong> the sensor. <strong>Wave left and right</strong> like flowing water. <strong>Release</strong>.'},
+  {key:'expecto_patronum',name:'Expecto Patronum',pronounce:'ex-PEK-toh pah-TROH-num',emoji:'🦌',color:'#a0d8ff',led:'88CCFF',type:'Charm',yr:4,xp:50,atk:0,def:60,lore:'The most powerful defensive spell. A spiral channels your happiest memory into a silver guardian.',howTo:'<strong>Hold</strong> the sensor. Large <strong>clockwise spiral</strong> then thrust forward. Think of your <em>happiest</em> memory. <strong>Release</strong>.'},
+  {key:'confringo',name:'Confringo',pronounce:'con-FRING-oh',emoji:'💣',color:'#ff4400',led:'FF2200',type:'Curse',yr:4,xp:30,atk:45,def:0,lore:'The Blasting Curse. A powerful thrust causes violent explosions.',howTo:'<strong>Hold</strong> the sensor. Powerful <strong>forward thrust</strong>. <strong>Release</strong>.'},
+  {key:'petrificus_totalus',name:'Petrificus Totalus',pronounce:'pe-TRIF-i-cus to-TAY-lus',emoji:'🪨',color:'#aaaaaa',led:'888888',type:'Curse',yr:4,xp:25,atk:30,def:0,lore:'Full Body-Bind Curse. The target\'s limbs snap together rigid as a board.',howTo:'<strong>Hold</strong> the sensor. Stiff straight <strong>forward thrust</strong>. <strong>Release</strong>.'},
+  {key:'bombarda',name:'Bombarda',pronounce:'bom-BAR-dah',emoji:'💥',color:'#ff6600',led:'FF4400',type:'Charm',yr:5,xp:30,atk:40,def:0,lore:'The Exploding Charm. Targeted explosions blast through walls.',howTo:'<strong>Hold</strong> the sensor. Explosive <strong>forward thrust</strong>. <strong>Release</strong>.'},
+  {key:'impedimenta',name:'Impedimenta',pronounce:'im-ped-ih-MEN-tah',emoji:'🛑',color:'#ff8844',led:'FF6622',type:'Jinx',yr:5,xp:20,atk:15,def:20,lore:'The Impediment Jinx. Slows or stops the target.',howTo:'<strong>Hold</strong> the sensor. Controlled <strong>forward push</strong>. <strong>Release</strong>.'},
+  {key:'flipendo',name:'Flipendo',pronounce:'flih-PEN-doh',emoji:'🔄',color:'#88aaff',led:'4466FF',type:'Jinx',yr:6,xp:25,atk:20,def:0,lore:'The Knockback Jinx. Sends targets flying backward.',howTo:'<strong>Hold</strong> the sensor. Quick sharp <strong>jab forward</strong>. <strong>Release</strong> fast.'},
+  {key:'colovaria',name:'Colovaria',pronounce:'col-oh-VAR-ee-ah',emoji:'🌈',color:'#ff88ff',led:'FF44FF',type:'Charm',yr:7,xp:30,atk:0,def:0,lore:'The Colour-Change Charm. Shifts colour through the entire spectrum.',howTo:'<strong>Hold</strong> the sensor. Smooth <strong>figure-8</strong>. <strong>Release</strong>.'},
 ];
 
 const DUEL_SPELLS=[
@@ -726,9 +683,9 @@ function init(){
 
   if(load()&&S.profile){
     applyHouse(S.profile.house);
-    startCeremony();
+    startApp();
   } else {
-    startCeremony();
+    setTimeout(()=>{show('profile');snd('housesel');},2600);
   }
 }
 
@@ -1059,119 +1016,6 @@ function onSpell(ev){
 }
 
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
-
-
-// ═══ BOX BLE ═══
-const BOX = {
-  SERVICE: '57420001-587e-48a0-974c-54686f72c577',
-  CMD:     '57420002-587e-48a0-974c-54686f72c577',
-  NOTIFY:  '57420003-587e-48a0-974c-54686f72c577',
-};
-let boxDev=null, boxCmd=null, boxOn=false;
-
-async function connectBoxBLE() {
-  if (!navigator.bluetooth) { skipCeremony(); return; }
-  try {
-    document.getElementById('cerHint').textContent = 'Searching for your box…';
-    boxDev = await navigator.bluetooth.requestDevice({
-      filters: [{namePrefix: 'MCB'}],
-      optionalServices: [BOX.SERVICE]
-    });
-    const srv = await boxDev.gatt.connect();
-    const ws = await srv.getPrimaryService(BOX.SERVICE);
-    boxCmd = await ws.getCharacteristic(BOX.CMD).catch(()=>null);
-    const notify = await ws.getCharacteristic(BOX.NOTIFY);
-    await notify.startNotifications();
-    notify.addEventListener('characteristicvaluechanged', onBoxEvent);
-    boxOn = true;
-    document.getElementById('cerHint').textContent = 'Box connected — open the lid!';
-    // Light up box LEDs blue while waiting
-    sendBoxCmd([{"command":"changeled","group":0,"color":"0055FF","duration":2.0},
-                {"command":"changeled","group":1,"color":"0055FF","duration":2.0}]);
-  } catch(e) {
-    document.getElementById('cerHint').textContent = 'Open the box to begin your journey';
-    document.getElementById('cerConnectBtn').classList.add('show');
-  }
-}
-
-async function sendBoxCmd(cmds) {
-  if (!boxCmd) return;
-  try { await boxCmd.writeValueWithoutResponse(new TextEncoder().encode(JSON.stringify(cmds))); }
-  catch(e) {}
-}
-
-function onBoxEvent(event) {
-  // Box lid opened — trigger ceremony
-  const bytes = new Uint8Array(event.target.value.buffer);
-  console.log('Box event:', Array.from(bytes).map(b=>b.toString(16)).join(' '));
-  triggerCeremony();
-}
-
-function triggerCeremony() {
-  // Play stinger
-  snd('stinger');
-  document.getElementById('cerHint').textContent = 'Your wand has been revealed…';
-  // Glow on
-  document.getElementById('cerGlow').classList.add('on');
-  // Light up box gold
-  sendBoxCmd([
-    {"command":"buzz","duration":0.3},
-    {"command":"changeled","group":0,"color":"FFD700","duration":2.0},
-    {"command":"changeled","group":1,"color":"FFD700","duration":2.0},
-  ]);
-  // Wand rises after 800ms
-  setTimeout(() => {
-    document.getElementById('cerWandImg').classList.add('rise');
-    // Update wand image based on house
-    const house = S.profile?.house || selHouse || 'Gryffindor';
-    const wandKey = HOUSES[house]?.wand || 'defiant';
-    document.getElementById('cerWandImg').src = `assets/images/ui/wand_${wandKey}_list.webp`;
-  }, 800);
-  // Success sound after 2s
-  setTimeout(() => {
-    snd('ceremony');
-    sendBoxCmd([{"command":"clearleds"}]);
-  }, 2400);
-  // Show connect wand button after 3.5s
-  setTimeout(() => {
-    document.getElementById('cerHint').textContent = 'Now connect your wand to begin';
-    document.getElementById('cerConnectBtn').textContent = '🪄 Connect Wand';
-    document.getElementById('cerConnectBtn').onclick = () => {
-      skipCeremony();
-      setTimeout(showWandModal, 400);
-    };
-    document.getElementById('cerConnectBtn').classList.add('show');
-  }, 3500);
-}
-
-function skipCeremony() {
-  localStorage.setItem('mcw_ceremony_seen', '1');
-  if (S.profile) {
-    show('main', false);
-  } else {
-    show('profile');
-    snd('housesel');
-  }
-}
-
-function startCeremony() {
-  const seen = localStorage.getItem('mcw_ceremony_seen');
-  if (seen && S.profile) {
-    // Skip directly to app
-    show('main', false);
-    return;
-  }
-  // Show ceremony screen
-  show('ceremony', false);
-  // After 2s show connect box button
-  setTimeout(() => {
-    if (!boxOn) {
-      document.getElementById('cerConnectBtn').classList.add('show');
-    }
-  }, 2000);
-  // Try auto-connect box
-  // (Web Bluetooth requires user gesture so we show the button instead)
-}
 
 window.addEventListener('load',init);
 </script>
