@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -20,11 +21,11 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--hp2);color:var
 
 /* STARFIELD */
 .starfield{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.starfield::before{content:'';position:absolute;inset:0;background:
-  radial-gradient(ellipse 120% 60% at 50% -10%,rgba(80,40,160,0.45) 0%,transparent 60%),
-  linear-gradient(180deg,#0d0720 0%,#1a0f3e 50%,#0d0720 100%)}
-.star{position:absolute;border-radius:50%;background:#fff;animation:twinkle var(--d,3s) ease-in-out infinite var(--dl,0s)}
-@keyframes twinkle{0%,100%{opacity:var(--o,.4)}50%{opacity:.9}}
+.starfield::before{content:’’;position:absolute;inset:0;background:
+radial-gradient(ellipse 120% 60% at 50% -10%,rgba(80,40,160,0.45) 0%,transparent 60%),
+linear-gradient(180deg,#0d0720 0%,#1a0f3e 50%,#0d0720 100%)}
+.star{position:absolute;border-radius:50%;background:#fff;animation:twinkle var(–d,3s) ease-in-out infinite var(–dl,0s)}
+@keyframes twinkle{0%,100%{opacity:var(–o,.4)}50%{opacity:.9}}
 
 /* SCREENS */
 .screen{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;opacity:0;pointer-events:none;transition:opacity .35s ease;overflow:hidden;z-index:1}
@@ -34,82 +35,82 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--hp2);color:var
 #splash{background:#000;justify-content:center}
 #splashVideo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .splash-logo{position:relative;z-index:2;text-align:center}
-.splash-logo h1{font-family:'Cinzel',serif;font-size:1rem;color:var(--gold);letter-spacing:.12em;text-shadow:0 0 30px rgba(201,168,76,.8);opacity:0;animation:sUp 1s ease 2s forwards}
+.splash-logo h1{font-family:‘Cinzel’,serif;font-size:1rem;color:var(–gold);letter-spacing:.12em;text-shadow:0 0 30px rgba(201,168,76,.8);opacity:0;animation:sUp 1s ease 2s forwards}
 .splash-logo p{font-size:.72rem;color:rgba(232,217,176,.5);letter-spacing:.22em;text-transform:uppercase;margin-top:6px;opacity:0;animation:sUp 1s ease 2.4s forwards}
 @keyframes sUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
 /* PROFILE SETUP */
-#profile{justify-content:flex-start;overflow-y:auto;padding:calc(44px + var(--sat)) 18px calc(60px + var(--sab))}
+#profile{justify-content:flex-start;overflow-y:auto;padding:calc(44px + var(–sat)) 18px calc(60px + var(–sab))}
 .setup-hero{text-align:center;margin-bottom:24px;width:100%}
-.ph-title{font-family:'Cinzel',serif;font-size:1rem;color:var(--gold);letter-spacing:.08em;margin-bottom:4px}
-.ph-sub{font-size:.8rem;color:var(--text2);font-style:italic}
+.ph-title{font-family:‘Cinzel’,serif;font-size:1rem;color:var(–gold);letter-spacing:.08em;margin-bottom:4px}
+.ph-sub{font-size:.8rem;color:var(–text2);font-style:italic}
 .setup-block{width:100%;max-width:420px;margin-bottom:20px}
-.setup-lbl{font-family:'Cinzel',serif;font-size:.6rem;color:var(--gold);letter-spacing:.22em;text-transform:uppercase;margin-bottom:9px}
-.name-input{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(201,168,76,.25);border-radius:var(--r);padding:13px 16px;color:var(--text);font-size:.95rem;font-family:'Crimson Text',serif;outline:none;text-align:center;letter-spacing:.06em}
-.name-input:focus{border-color:var(--gold)}
-.name-input::placeholder{color:var(--text3)}
+.setup-lbl{font-family:‘Cinzel’,serif;font-size:.6rem;color:var(–gold);letter-spacing:.22em;text-transform:uppercase;margin-bottom:9px}
+.name-input{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(201,168,76,.25);border-radius:var(–r);padding:13px 16px;color:var(–text);font-size:.95rem;font-family:‘Crimson Text’,serif;outline:none;text-align:center;letter-spacing:.06em}
+.name-input:focus{border-color:var(–gold)}
+.name-input::placeholder{color:var(–text3)}
 
 /* House grid with real shield images */
 .house-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .house-card{background:rgba(0,0,0,.4);border:2px solid rgba(255,255,255,.08);border-radius:12px;padding:16px 12px;cursor:pointer;text-align:center;transition:all .25s;position:relative;overflow:hidden}
-.house-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .25s}
+.house-card::before{content:’’;position:absolute;inset:0;opacity:0;transition:opacity .25s}
 .house-card.gryffindor::before{background:radial-gradient(ellipse at center,rgba(116,0,1,.5),transparent)}
 .house-card.slytherin::before{background:radial-gradient(ellipse at center,rgba(26,71,42,.5),transparent)}
 .house-card.hufflepuff::before{background:radial-gradient(ellipse at center,rgba(200,155,40,.35),transparent)}
 .house-card.ravenclaw::before{background:radial-gradient(ellipse at center,rgba(14,26,80,.55),transparent)}
-.house-card.selected{border-color:var(--hs,var(--gold));box-shadow:0 0 24px rgba(201,168,76,.25)}
+.house-card.selected{border-color:var(–hs,var(–gold));box-shadow:0 0 24px rgba(201,168,76,.25)}
 .house-card.selected::before{opacity:1}
 .house-shield-img{width:56px;height:70px;object-fit:contain;margin:0 auto 8px;display:block;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
-.house-name-txt{font-family:'Cinzel',serif;font-size:.78rem;color:var(--text);margin-bottom:2px}
-.house-trait-txt{font-size:.64rem;color:var(--text2);font-style:italic}
+.house-name-txt{font-family:‘Cinzel’,serif;font-size:.78rem;color:var(–text);margin-bottom:2px}
+.house-trait-txt{font-size:.64rem;color:var(–text2);font-style:italic}
 
 /* Patronus grid with real images */
 .pat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .pat-card{background:rgba(0,0,0,.35);border:1px solid rgba(201,168,76,.12);border-radius:9px;padding:8px 4px;cursor:pointer;text-align:center;transition:all .2s}
 .pat-card:hover,.pat-card.selected{border-color:rgba(160,200,255,.5);background:rgba(160,200,255,.08);box-shadow:0 0 12px rgba(160,200,255,.2)}
 .pat-img{width:52px;height:52px;object-fit:contain;margin:0 auto 4px;display:block;filter:drop-shadow(0 0 6px rgba(160,200,255,.3))}
-.pat-name{font-size:.58rem;color:var(--text2);letter-spacing:.04em}
-.begin-btn{width:100%;max-width:420px;background:linear-gradient(135deg,rgba(201,168,76,.22),rgba(201,168,76,.08));border:1px solid var(--gold);border-radius:30px;color:var(--gold2);font-family:'Cinzel',serif;font-size:.85rem;padding:15px;cursor:pointer;letter-spacing:.1em;transition:all .3s;margin-top:6px}
+.pat-name{font-size:.58rem;color:var(–text2);letter-spacing:.04em}
+.begin-btn{width:100%;max-width:420px;background:linear-gradient(135deg,rgba(201,168,76,.22),rgba(201,168,76,.08));border:1px solid var(–gold);border-radius:30px;color:var(–gold2);font-family:‘Cinzel’,serif;font-size:.85rem;padding:15px;cursor:pointer;letter-spacing:.1em;transition:all .3s;margin-top:6px}
 .begin-btn:hover{box-shadow:0 0 28px rgba(201,168,76,.35)}
 
 /* MAIN APP */
 #main{justify-content:flex-start;padding:0}
-.topbar{width:100%;display:flex;align-items:center;padding:10px 14px;padding-top:calc(10px + var(--sat));background:rgba(0,0,0,.5);border-bottom:1px solid rgba(201,168,76,.1);gap:10px;flex-shrink:0;backdrop-filter:blur(14px);z-index:10}
-.tb-shield{width:36px;height:36px;border-radius:50%;background:var(--house-p);border:1.5px solid var(--house-s);display:flex;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;overflow:hidden}
+.topbar{width:100%;display:flex;align-items:center;padding:10px 14px;padding-top:calc(10px + var(–sat));background:rgba(0,0,0,.5);border-bottom:1px solid rgba(201,168,76,.1);gap:10px;flex-shrink:0;backdrop-filter:blur(14px);z-index:10}
+.tb-shield{width:36px;height:36px;border-radius:50%;background:var(–house-p);border:1.5px solid var(–house-s);display:flex;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;overflow:hidden}
 .tb-shield img{width:26px;height:32px;object-fit:contain}
 .tb-info{flex:1}
-.tb-name{font-family:'Cinzel',serif;font-size:.82rem;color:var(--text);letter-spacing:.04em}
-.tb-sub{font-size:.66rem;color:var(--text2);font-style:italic;margin-top:1px}
-.wand-pill{display:flex;align-items:center;gap:5px;background:rgba(0,0,0,.35);border:1px solid rgba(201,168,76,.15);border-radius:20px;padding:5px 11px;cursor:pointer;font-size:.66rem;color:var(--text2);transition:all .2s;font-family:'Cinzel',serif;letter-spacing:.04em}
+.tb-name{font-family:‘Cinzel’,serif;font-size:.82rem;color:var(–text);letter-spacing:.04em}
+.tb-sub{font-size:.66rem;color:var(–text2);font-style:italic;margin-top:1px}
+.wand-pill{display:flex;align-items:center;gap:5px;background:rgba(0,0,0,.35);border:1px solid rgba(201,168,76,.15);border-radius:20px;padding:5px 11px;cursor:pointer;font-size:.66rem;color:var(–text2);transition:all .2s;font-family:‘Cinzel’,serif;letter-spacing:.04em}
 .wand-pill.on{border-color:rgba(80,200,120,.45);color:#90e0a0}
 .wpip{width:5px;height:5px;border-radius:50%;background:#333;flex-shrink:0;transition:all .3s}
 .wpip.on{background:#50c878;box-shadow:0 0 5px #50c878;animation:pip 2s infinite}
-.wpip.scan{background:var(--gold);animation:pip .7s infinite}
+.wpip.scan{background:var(–gold);animation:pip .7s infinite}
 @keyframes pip{0%,100%{opacity:1}50%{opacity:.35}}
 
 .xp-strip{width:100%;padding:7px 14px 6px;background:rgba(0,0,0,.3);border-bottom:1px solid rgba(201,168,76,.07);flex-shrink:0}
 .xp-meta{display:flex;justify-content:space-between;font-size:.64rem;margin-bottom:4px}
-.xp-yr{font-family:'Cinzel',serif;color:var(--gold);letter-spacing:.06em}
-.xp-num{color:var(--text2)}
+.xp-yr{font-family:‘Cinzel’,serif;color:var(–gold);letter-spacing:.06em}
+.xp-num{color:var(–text2)}
 .xp-track{height:3px;background:rgba(255,255,255,.07);border-radius:2px;overflow:hidden}
-.xp-bar{height:100%;background:linear-gradient(90deg,var(--house-p),var(--house-s));border-radius:2px;transition:width .9s cubic-bezier(.16,1,.3,1)}
+.xp-bar{height:100%;background:linear-gradient(90deg,var(–house-p),var(–house-s));border-radius:2px;transition:width .9s cubic-bezier(.16,1,.3,1)}
 
 .scroll-area{flex:1;overflow-y:auto;overflow-x:hidden;width:100%;-webkit-overflow-scrolling:touch}
 .scroll-area::-webkit-scrollbar{display:none}
 .tab-panel{display:none;padding:14px 14px 80px}
 .tab-panel.active{display:block}
 
-.bottom-nav{width:100%;display:flex;background:rgba(5,3,15,.92);border-top:1px solid rgba(201,168,76,.1);padding-bottom:var(--sab);flex-shrink:0;backdrop-filter:blur(14px)}
-.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;padding:9px 4px 7px;cursor:pointer;border:none;background:transparent;color:var(--text3);font-size:.54rem;letter-spacing:.06em;gap:3px;transition:all .2s;font-family:'Cinzel',serif}
+.bottom-nav{width:100%;display:flex;background:rgba(5,3,15,.92);border-top:1px solid rgba(201,168,76,.1);padding-bottom:var(–sab);flex-shrink:0;backdrop-filter:blur(14px)}
+.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;padding:9px 4px 7px;cursor:pointer;border:none;background:transparent;color:var(–text3);font-size:.54rem;letter-spacing:.06em;gap:3px;transition:all .2s;font-family:‘Cinzel’,serif}
 .nav-btn .ni{font-size:1.2rem;transition:all .2s}
-.nav-btn.active{color:var(--gold)}
+.nav-btn.active{color:var(–gold)}
 .nav-btn.active .ni{filter:drop-shadow(0 0 6px rgba(201,168,76,.7))}
 
 /* SPELLBOOK */
 .sb-head{text-align:center;padding:12px 0 18px}
-.sb-head h2{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--gold);letter-spacing:.08em}
-.sb-head p{font-size:.76rem;color:var(--text2);font-style:italic;margin-top:3px}
-.yr-label{font-family:'Cinzel',serif;font-size:.62rem;color:var(--gold);letter-spacing:.2em;text-transform:uppercase;border-left:2px solid var(--house-s);padding-left:8px;margin-bottom:10px;margin-top:4px}
+.sb-head h2{font-family:‘Cinzel’,serif;font-size:1.1rem;color:var(–gold);letter-spacing:.08em}
+.sb-head p{font-size:.76rem;color:var(–text2);font-style:italic;margin-top:3px}
+.yr-label{font-family:‘Cinzel’,serif;font-size:.62rem;color:var(–gold);letter-spacing:.2em;text-transform:uppercase;border-left:2px solid var(–house-s);padding-left:8px;margin-bottom:10px;margin-top:4px}
 
 /* 2x2 spell card grid matching original */
 .spell-grid-2x2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
@@ -122,18 +123,18 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--hp2);color:var
 .sc-gesture-wrap{position:absolute;top:8%;left:50%;transform:translateX(-50%);width:80%;height:50%}
 .sc-gesture-svg{width:100%;height:100%}
 .sc-bottom{position:absolute;bottom:0;left:0;right:0;padding:8px 10px 12px;text-align:center}
-.sc-name{font-family:'Cinzel',serif;font-size:.72rem;color:#fff;letter-spacing:.04em;text-shadow:0 1px 4px rgba(0,0,0,.9)}
+.sc-name{font-family:‘Cinzel’,serif;font-size:.72rem;color:#fff;letter-spacing:.04em;text-shadow:0 1px 4px rgba(0,0,0,.9)}
 .sc-pronunc{font-size:.58rem;color:rgba(232,217,176,.5);font-style:italic;margin-top:1px}
 .sc-stars{display:flex;justify-content:center;gap:3px;margin-top:4px;font-size:.6rem}
-.sc-star{opacity:.25;color:var(--gold)}
+.sc-star{opacity:.25;color:var(–gold)}
 .sc-star.on{opacity:1}
 .sc-lock{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:1.8rem;opacity:.5}
 
 /* SPELL DETAIL */
 #detail{justify-content:flex-start;overflow-y:auto}
-.det-top{width:100%;display:flex;align-items:center;padding:12px 14px;padding-top:calc(12px + var(--sat));background:rgba(0,0,0,.5);border-bottom:1px solid rgba(201,168,76,.1);gap:11px;flex-shrink:0;backdrop-filter:blur(14px)}
-.back-btn{background:none;border:none;color:var(--gold);font-size:1.1rem;cursor:pointer;padding:5px;line-height:1;font-family:'Cinzel',serif}
-.det-top h3{font-family:'Cinzel',serif;font-size:.88rem;color:var(--text);letter-spacing:.06em}
+.det-top{width:100%;display:flex;align-items:center;padding:12px 14px;padding-top:calc(12px + var(–sat));background:rgba(0,0,0,.5);border-bottom:1px solid rgba(201,168,76,.1);gap:11px;flex-shrink:0;backdrop-filter:blur(14px)}
+.back-btn{background:none;border:none;color:var(–gold);font-size:1.1rem;cursor:pointer;padding:5px;line-height:1;font-family:‘Cinzel’,serif}
+.det-top h3{font-family:‘Cinzel’,serif;font-size:.88rem;color:var(–text);letter-spacing:.06em}
 
 /* Parchment hero card */
 .det-hero-card{width:calc(100% - 28px);margin:14px auto 0;border-radius:16px;overflow:hidden;position:relative;min-height:280px;box-shadow:0 8px 40px rgba(0,0,0,.7);border:1px solid rgba(201,168,76,.2)}
@@ -141,44 +142,44 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--hp2);color:var
 .det-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.97) 0%,rgba(0,0,0,.5) 50%,rgba(0,0,0,.1) 100%)}
 .det-hero-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;padding:16px 16px 20px}
 .det-gesture-svg{width:160px;height:150px;filter:drop-shadow(0 0 14px rgba(255,255,255,.35))}
-.det-spell-name{font-family:'Cinzel',serif;font-size:1.4rem;color:#fff;text-align:center;letter-spacing:.06em;margin-top:8px;text-shadow:0 2px 12px rgba(0,0,0,.9)}
+.det-spell-name{font-family:‘Cinzel’,serif;font-size:1.4rem;color:#fff;text-align:center;letter-spacing:.06em;margin-top:8px;text-shadow:0 2px 12px rgba(0,0,0,.9)}
 .det-pronounce{font-size:.76rem;color:rgba(232,217,176,.5);font-style:italic;text-align:center;margin-top:2px;letter-spacing:.08em}
-.det-type-badge{background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.28);border-radius:12px;padding:3px 10px;font-size:.6rem;color:var(--gold);font-family:'Cinzel',serif;letter-spacing:.1em;margin-top:8px}
+.det-type-badge{background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.28);border-radius:12px;padding:3px 10px;font-size:.6rem;color:var(–gold);font-family:‘Cinzel’,serif;letter-spacing:.1em;margin-top:8px}
 .det-pips{display:flex;gap:8px;margin-top:12px}
 .det-pip{width:38px;height:3px;border-radius:2px;background:rgba(255,255,255,.1);transition:all .4s}
-.det-pip.on{background:var(--gold);box-shadow:0 0 8px rgba(201,168,76,.5)}
+.det-pip.on{background:var(–gold);box-shadow:0 0 8px rgba(201,168,76,.5)}
 .wand-tip-row{display:flex;justify-content:center;margin-top:10px}
-.wand-tip{width:40px;height:3px;background:linear-gradient(90deg,transparent,var(--gold),white);border-radius:2px;box-shadow:0 0 12px rgba(201,168,76,.6);animation:tipGlow 1.5s ease-in-out infinite}
+.wand-tip{width:40px;height:3px;background:linear-gradient(90deg,transparent,var(–gold),white);border-radius:2px;box-shadow:0 0 12px rgba(201,168,76,.6);animation:tipGlow 1.5s ease-in-out infinite}
 @keyframes tipGlow{0%,100%{opacity:.6;width:40px}50%{opacity:1;width:55px}}
 
 .det-body{padding:16px 14px 100px;width:100%}
-.det-sec-title{font-family:'Cinzel',serif;font-size:.6rem;color:var(--gold);letter-spacing:.22em;text-transform:uppercase;margin-bottom:8px;margin-top:18px;display:flex;align-items:center;gap:8px}
-.det-sec-title::after{content:'';flex:1;height:1px;background:rgba(201,168,76,.12)}
+.det-sec-title{font-family:‘Cinzel’,serif;font-size:.6rem;color:var(–gold);letter-spacing:.22em;text-transform:uppercase;margin-bottom:8px;margin-top:18px;display:flex;align-items:center;gap:8px}
+.det-sec-title::after{content:’’;flex:1;height:1px;background:rgba(201,168,76,.12)}
 .det-lore{font-size:.86rem;line-height:1.75;color:rgba(232,217,176,.7);font-style:italic}
-.howto-card{background:rgba(0,0,0,.3);border:1px solid rgba(201,168,76,.1);border-radius:var(--r);padding:13px;font-size:.84rem;line-height:1.7;color:rgba(232,217,176,.7)}
-.howto-card strong{color:var(--gold2)}
-.det-actions{position:fixed;bottom:0;left:0;right:0;padding:10px 14px;padding-bottom:calc(10px + var(--sab));background:rgba(5,3,15,.95);border-top:1px solid rgba(201,168,76,.1);display:flex;gap:10px;backdrop-filter:blur(14px)}
-.act{flex:1;padding:13px;border-radius:var(--r);border:1px solid rgba(201,168,76,.18);background:rgba(255,255,255,.04);color:var(--text);font-family:'Cinzel',serif;font-size:.72rem;cursor:pointer;transition:all .2s;text-align:center;letter-spacing:.05em}
-.act.primary{background:linear-gradient(135deg,var(--house-p),rgba(201,168,76,.15));border-color:var(--house-s);color:var(--gold2);font-size:.78rem}
+.howto-card{background:rgba(0,0,0,.3);border:1px solid rgba(201,168,76,.1);border-radius:var(–r);padding:13px;font-size:.84rem;line-height:1.7;color:rgba(232,217,176,.7)}
+.howto-card strong{color:var(–gold2)}
+.det-actions{position:fixed;bottom:0;left:0;right:0;padding:10px 14px;padding-bottom:calc(10px + var(–sab));background:rgba(5,3,15,.95);border-top:1px solid rgba(201,168,76,.1);display:flex;gap:10px;backdrop-filter:blur(14px)}
+.act{flex:1;padding:13px;border-radius:var(–r);border:1px solid rgba(201,168,76,.18);background:rgba(255,255,255,.04);color:var(–text);font-family:‘Cinzel’,serif;font-size:.72rem;cursor:pointer;transition:all .2s;text-align:center;letter-spacing:.05em}
+.act.primary{background:linear-gradient(135deg,var(–house-p),rgba(201,168,76,.15));border-color:var(–house-s);color:var(–gold2);font-size:.78rem}
 
 /* TUTORIAL */
 #tutorial{background:#000;justify-content:flex-start}
-.tut-top{width:100%;display:flex;align-items:center;padding:12px 14px;padding-top:calc(12px + var(--sat));gap:11px;flex-shrink:0}
-.tut-top h3{flex:1;text-align:center;font-family:'Cinzel',serif;font-size:.85rem;color:var(--text);letter-spacing:.06em}
+.tut-top{width:100%;display:flex;align-items:center;padding:12px 14px;padding-top:calc(12px + var(–sat));gap:11px;flex-shrink:0}
+.tut-top h3{flex:1;text-align:center;font-family:‘Cinzel’,serif;font-size:.85rem;color:var(–text);letter-spacing:.06em}
 .tut-vid-wrap{width:100%;flex:1;position:relative;overflow:hidden}
 #tutVideo{width:100%;height:100%;object-fit:cover}
 .tut-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:0 18px 20px;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,transparent 55%)}
-.tut-step-lbl{font-family:'Cinzel',serif;font-size:.58rem;color:var(--gold);letter-spacing:.22em;text-transform:uppercase;margin-bottom:5px}
-.tut-inst{font-size:.96rem;color:var(--text);text-align:center;line-height:1.5;margin-bottom:14px;font-style:italic}
+.tut-step-lbl{font-family:‘Cinzel’,serif;font-size:.58rem;color:var(–gold);letter-spacing:.22em;text-transform:uppercase;margin-bottom:5px}
+.tut-inst{font-size:.96rem;color:var(–text);text-align:center;line-height:1.5;margin-bottom:14px;font-style:italic}
 .tut-dots{display:flex;gap:5px;margin-bottom:14px}
 .tdot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);transition:all .3s}
-.tdot.active{background:var(--gold);box-shadow:0 0 8px rgba(201,168,76,.6);width:22px;border-radius:4px}
+.tdot.active{background:var(–gold);box-shadow:0 0 8px rgba(201,168,76,.6);width:22px;border-radius:4px}
 .tdot.done{background:rgba(201,168,76,.4)}
-.tut-btn{width:100%;max-width:280px;padding:13px;background:var(--house-p);border:1px solid var(--house-s);border-radius:28px;color:var(--gold2);font-family:'Cinzel',serif;font-size:.82rem;cursor:pointer;text-align:center;letter-spacing:.06em;transition:all .3s}
+.tut-btn{width:100%;max-width:280px;padding:13px;background:var(–house-p);border:1px solid var(–house-s);border-radius:28px;color:var(–gold2);font-family:‘Cinzel’,serif;font-size:.82rem;cursor:pointer;text-align:center;letter-spacing:.06em;transition:all .3s}
 
 /* CASTING */
 #casting{justify-content:flex-start}
-.cast-top{width:100%;display:flex;align-items:center;padding:12px 14px;padding-top:calc(12px + var(--sat));gap:11px;position:absolute;z-index:10}
+.cast-top{width:100%;display:flex;align-items:center;padding:12px 14px;padding-top:calc(12px + var(–sat));gap:11px;position:absolute;z-index:10}
 .cast-arena{width:100%;height:100%;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .cast-bg-img{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity .6s}
 .cast-bg-overlay{position:absolute;inset:0;background:rgba(0,0,0,.5)}
@@ -191,66 +192,66 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--hp2);color:var
 .cast-card-bg{position:absolute;inset:0;background-size:cover;background-position:center;background-color:#2a1a0a}
 .cast-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.45) 60%,rgba(0,0,0,.1) 100%)}
 .cast-gesture-svg{position:relative;z-index:2;width:150px;height:130px;filter:drop-shadow(0 0 16px rgba(255,255,255,.4))}
-.cast-spell-name{position:relative;z-index:2;font-family:'Cinzel',serif;font-size:1.15rem;color:#fff;text-align:center;letter-spacing:.06em;margin-top:6px}
+.cast-spell-name{position:relative;z-index:2;font-family:‘Cinzel’,serif;font-size:1.15rem;color:#fff;text-align:center;letter-spacing:.06em;margin-top:6px}
 .cast-spell-name.reveal{animation:cReveal .6s cubic-bezier(.16,1,.3,1) forwards}
 @keyframes cReveal{0%{opacity:0;transform:scale(.5) translateY(10px);letter-spacing:.3em}100%{opacity:1;transform:scale(1) translateY(0);letter-spacing:.06em}}
 .cast-pronounce{position:relative;z-index:2;font-size:.68rem;color:rgba(232,217,176,.45);font-style:italic;text-align:center;margin-top:2px;letter-spacing:.08em}
 .cast-wand-img{position:absolute;bottom:-20px;right:20px;z-index:3;width:60px;height:auto;transform:rotate(-30deg);filter:drop-shadow(0 0 12px rgba(201,168,76,.5));animation:wandFloat 2s ease-in-out infinite}
 @keyframes wandFloat{0%,100%{transform:rotate(-30deg) translateY(0)}50%{transform:rotate(-28deg) translateY(-5px)}}
-.cast-ready-txt{position:absolute;z-index:2;bottom:100px;font-size:.74rem;color:var(--text2);text-align:center;letter-spacing:.1em;animation:hintBlink 2.5s ease-in-out infinite;font-style:italic}
+.cast-ready-txt{position:absolute;z-index:2;bottom:100px;font-size:.74rem;color:var(–text2);text-align:center;letter-spacing:.1em;animation:hintBlink 2.5s ease-in-out infinite;font-style:italic}
 @keyframes hintBlink{0%,100%{opacity:.3}50%{opacity:.8}}
 
 /* DUEL */
 #duel{justify-content:flex-start}
-.duel-top{width:100%;display:flex;align-items:center;padding:12px 14px;padding-top:calc(12px + var(--sat));border-bottom:1px solid rgba(201,168,76,.1);flex-shrink:0}
-.duel-top h3{flex:1;text-align:center;font-family:'Cinzel',serif;font-size:.92rem;color:var(--gold);letter-spacing:.08em}
+.duel-top{width:100%;display:flex;align-items:center;padding:12px 14px;padding-top:calc(12px + var(–sat));border-bottom:1px solid rgba(201,168,76,.1);flex-shrink:0}
+.duel-top h3{flex:1;text-align:center;font-family:‘Cinzel’,serif;font-size:.92rem;color:var(–gold);letter-spacing:.08em}
 
 /* Real duel imagery */
 .duel-vis{width:100%;height:180px;position:relative;flex-shrink:0;overflow:hidden}
-.duel-vis-bg{position:absolute;inset:0;background:url('assets/images/ui/multiplayer_bg.webp') center/cover;opacity:.4}
+.duel-vis-bg{position:absolute;inset:0;background:url(‘assets/images/ui/multiplayer_bg.webp’) center/cover;opacity:.4}
 .duel-vis-overlay{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(60,20,100,.3),rgba(0,0,0,.7))}
 .duel-img1{position:absolute;left:5%;bottom:0;height:85%;object-fit:contain;filter:drop-shadow(0 0 12px rgba(201,168,76,.3))}
 .duel-img2{position:absolute;right:5%;bottom:0;height:85%;object-fit:contain;transform:scaleX(-1);filter:drop-shadow(0 0 12px rgba(200,60,60,.3))}
-.duel-vs-badge{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:'Cinzel',serif;font-size:1.6rem;color:var(--gold);text-shadow:0 0 20px rgba(201,168,76,.6)}
+.duel-vs-badge{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:‘Cinzel’,serif;font-size:1.6rem;color:var(–gold);text-shadow:0 0 20px rgba(201,168,76,.6)}
 .duel-accepted{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);background:rgba(5,2,20,.92);border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:8px 16px;text-align:center;white-space:nowrap}
-.da-title{font-family:'Cinzel',serif;font-size:.78rem;color:var(--gold);letter-spacing:.06em}
-.da-sub{font-size:.66rem;color:var(--text2);font-style:italic;margin-top:1px}
+.da-title{font-family:‘Cinzel’,serif;font-size:.78rem;color:var(–gold);letter-spacing:.06em}
+.da-sub{font-size:.66rem;color:var(–text2);font-style:italic;margin-top:1px}
 
 .duel-content{flex:1;overflow-y:auto;padding:12px 14px}
 .duel-hp-row{display:flex;gap:10px;margin-bottom:12px}
-.duel-p{flex:1;background:rgba(0,0,0,.35);border:1px solid rgba(201,168,76,.1);border-radius:var(--r);padding:10px;text-align:center}
+.duel-p{flex:1;background:rgba(0,0,0,.35);border:1px solid rgba(201,168,76,.1);border-radius:var(–r);padding:10px;text-align:center}
 .duel-p.you{border-color:rgba(201,168,76,.25)}
-.dp-name{font-family:'Cinzel',serif;font-size:.72rem;color:var(--text);margin-bottom:5px}
+.dp-name{font-family:‘Cinzel’,serif;font-size:.72rem;color:var(–text);margin-bottom:5px}
 .hp-track{height:5px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
 .hp-fill{height:100%;border-radius:3px;transition:width .5s ease}
-.you .hp-fill{background:linear-gradient(90deg,var(--house-p),var(--house-s))}
+.you .hp-fill{background:linear-gradient(90deg,var(–house-p),var(–house-s))}
 .opp .hp-fill{background:linear-gradient(90deg,#8b0000,#cc2222)}
-.hp-val{font-size:.64rem;color:var(--text2);margin-top:3px}
-.duel-vs{font-family:'Cinzel',serif;font-size:1.2rem;color:var(--gold);align-self:center;flex-shrink:0}
-.duel-status-box{background:rgba(0,0,0,.3);border:1px solid rgba(201,168,76,.08);border-radius:var(--r);padding:11px;text-align:center;margin-bottom:12px}
-.dsb-txt{font-size:.86rem;color:var(--text);margin-bottom:4px}
-.dsb-last{font-size:.72rem;color:var(--text2);font-style:italic}
+.hp-val{font-size:.64rem;color:var(–text2);margin-top:3px}
+.duel-vs{font-family:‘Cinzel’,serif;font-size:1.2rem;color:var(–gold);align-self:center;flex-shrink:0}
+.duel-status-box{background:rgba(0,0,0,.3);border:1px solid rgba(201,168,76,.08);border-radius:var(–r);padding:11px;text-align:center;margin-bottom:12px}
+.dsb-txt{font-size:.86rem;color:var(–text);margin-bottom:4px}
+.dsb-last{font-size:.72rem;color:var(–text2);font-style:italic}
 .duel-spell-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%}
-.ds-btn{background:rgba(0,0,0,.3);border:1px solid rgba(201,168,76,.1);border-radius:var(--r);padding:11px 6px;text-align:center;cursor:pointer;transition:all .2s}
+.ds-btn{background:rgba(0,0,0,.3);border:1px solid rgba(201,168,76,.1);border-radius:var(–r);padding:11px 6px;text-align:center;cursor:pointer;transition:all .2s}
 .ds-btn:hover{background:rgba(201,168,76,.08);border-color:rgba(201,168,76,.25)}
 .ds-btn.locked{opacity:.35;cursor:default}
 .ds-emoji{font-size:1.3rem;display:block;margin-bottom:3px}
-.ds-name{font-size:.6rem;color:var(--text);font-family:'Cinzel',serif}
-.ds-type{font-size:.56rem;color:var(--text2);font-style:italic;margin-top:1px}
+.ds-name{font-size:.6rem;color:var(–text);font-family:‘Cinzel’,serif}
+.ds-type{font-size:.56rem;color:var(–text2);font-style:italic;margin-top:1px}
 .duel-result-overlay{position:fixed;inset:0;background:rgba(0,0,0,.88);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:100;opacity:0;pointer-events:none;transition:opacity .5s;backdrop-filter:blur(6px)}
 .duel-result-overlay.show{opacity:1;pointer-events:all}
 .dr-icon{font-size:4rem;margin-bottom:10px}
-.dr-title{font-family:'Cinzel',serif;font-size:1.8rem;color:var(--gold);margin-bottom:6px;letter-spacing:.08em}
-.dr-sub{font-size:.86rem;color:var(--text2);font-style:italic;margin-bottom:22px}
-.dr-btn{padding:13px 28px;background:var(--house-p);border:1px solid var(--house-s);border-radius:28px;color:var(--gold2);font-family:'Cinzel',serif;font-size:.82rem;cursor:pointer;letter-spacing:.05em}
+.dr-title{font-family:‘Cinzel’,serif;font-size:1.8rem;color:var(–gold);margin-bottom:6px;letter-spacing:.08em}
+.dr-sub{font-size:.86rem;color:var(–text2);font-style:italic;margin-bottom:22px}
+.dr-btn{padding:13px 28px;background:var(–house-p);border:1px solid var(–house-s);border-radius:28px;color:var(–gold2);font-family:‘Cinzel’,serif;font-size:.82rem;cursor:pointer;letter-spacing:.05em}
 
 /* PROFILE SCREEN - wand beam */
 #profileScreen{justify-content:flex-start}
-.prof-top{width:100%;display:flex;align-items:center;padding:12px 14px;padding-top:calc(12px + var(--sat));background:rgba(0,0,0,.5);border-bottom:1px solid rgba(201,168,76,.1);gap:11px;flex-shrink:0;backdrop-filter:blur(14px)}
-.prof-top h3{font-family:'Cinzel',serif;font-size:.88rem;color:var(--text);flex:1;text-align:center}
+.prof-top{width:100%;display:flex;align-items:center;padding:12px 14px;padding-top:calc(12px + var(–sat));background:rgba(0,0,0,.5);border-bottom:1px solid rgba(201,168,76,.1);gap:11px;flex-shrink:0;backdrop-filter:blur(14px)}
+.prof-top h3{font-family:‘Cinzel’,serif;font-size:.88rem;color:var(–text);flex:1;text-align:center}
 .wand-beam-screen{flex:1;width:100%;position:relative;display:flex;flex-direction:column;align-items:center;padding:24px 20px 20px;overflow:hidden}
-.prof-wizard-name{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--text);letter-spacing:.08em;margin-bottom:3px;text-align:center;position:relative;z-index:2}
-.prof-wand-name{font-size:.72rem;color:var(--text2);letter-spacing:.15em;text-transform:uppercase;text-align:center;margin-bottom:16px;position:relative;z-index:2}
+.prof-wizard-name{font-family:‘Cinzel’,serif;font-size:1.1rem;color:var(–text);letter-spacing:.08em;margin-bottom:3px;text-align:center;position:relative;z-index:2}
+.prof-wand-name{font-size:.72rem;color:var(–text2);letter-spacing:.15em;text-transform:uppercase;text-align:center;margin-bottom:16px;position:relative;z-index:2}
 
 /* Real wand image on profile */
 .prof-wand-img{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);height:70%;max-width:80px;object-fit:contain;filter:drop-shadow(0 0 30px rgba(201,168,76,.4));animation:beamPulse 3s ease-in-out infinite;z-index:1}
@@ -258,52 +259,98 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--hp2);color:var
 .beam-line{position:absolute;left:50%;top:0;bottom:0;width:1px;transform:translateX(-50%);background:linear-gradient(to bottom,transparent 0%,rgba(201,168,76,.08) 10%,rgba(201,168,76,.3) 40%,rgba(255,255,255,.6) 50%,rgba(201,168,76,.3) 60%,rgba(201,168,76,.08) 90%,transparent 100%);box-shadow:0 0 20px rgba(201,168,76,.2);animation:beamPulse 3s ease-in-out infinite;z-index:0}
 
 .prof-center-info{position:relative;z-index:2;text-align:center;margin-top:auto;margin-bottom:auto}
-.prof-house-name{font-family:'Cinzel',serif;font-size:1rem;color:var(--gold);letter-spacing:.1em}
-.prof-rank-name{font-size:.68rem;color:var(--text2);font-style:italic;margin-top:3px}
+.prof-house-name{font-family:‘Cinzel’,serif;font-size:1rem;color:var(–gold);letter-spacing:.1em}
+.prof-rank-name{font-size:.68rem;color:var(–text2);font-style:italic;margin-top:3px}
 
 .prof-badges{position:relative;z-index:2;display:flex;justify-content:center;gap:24px;margin-top:auto;padding-bottom:16px}
 .pb-item{text-align:center}
-.pb-lbl{font-family:'Cinzel',serif;font-size:.52rem;color:var(--text3);letter-spacing:.15em;text-transform:uppercase;margin-bottom:5px}
+.pb-lbl{font-family:‘Cinzel’,serif;font-size:.52rem;color:var(–text3);letter-spacing:.15em;text-transform:uppercase;margin-bottom:5px}
 .pb-shield{width:44px;height:54px;object-fit:contain;display:block;margin:0 auto 3px;filter:drop-shadow(0 0 6px rgba(201,168,76,.3))}
 .pb-pat{width:44px;height:44px;object-fit:contain;display:block;margin:0 auto 3px;filter:drop-shadow(0 0 8px rgba(160,200,255,.3))}
-.pb-name{font-size:.62rem;color:var(--text2)}
+.pb-name{font-size:.62rem;color:var(–text2)}
 
 .stats-row{display:flex;gap:8px;width:100%;position:relative;z-index:2;margin-top:12px}
 .stat-pill{flex:1;background:rgba(0,0,0,.4);border:1px solid rgba(201,168,76,.1);border-radius:8px;padding:10px 6px;text-align:center}
-.stat-n{font-family:'Cinzel',serif;font-size:1rem;color:var(--gold)}
-.stat-l{font-size:.54rem;color:var(--text3);letter-spacing:.1em;margin-top:2px}
+.stat-n{font-family:‘Cinzel’,serif;font-size:1rem;color:var(–gold)}
+.stat-l{font-size:.54rem;color:var(–text3);letter-spacing:.1em;margin-top:2px}
 
 /* WAND MODAL */
 .modal-wrap{position:fixed;inset:0;background:rgba(0,0,0,.8);display:flex;align-items:flex-end;z-index:200;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(6px)}
 .modal-wrap.show{opacity:1;pointer-events:all}
-.modal-sheet{width:100%;background:#0a0518;border:1px solid rgba(201,168,76,.18);border-radius:20px 20px 0 0;padding:18px 18px calc(20px + var(--sab));transform:translateY(100%);transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.modal-sheet{width:100%;background:#0a0518;border:1px solid rgba(201,168,76,.18);border-radius:20px 20px 0 0;padding:18px 18px calc(20px + var(–sab));transform:translateY(100%);transition:transform .4s cubic-bezier(.16,1,.3,1)}
 .modal-wrap.show .modal-sheet{transform:translateY(0)}
 .modal-handle{width:38px;height:3px;background:rgba(255,255,255,.12);border-radius:2px;margin:0 auto 14px}
 .modal-wand{font-size:2.6rem;text-align:center;display:block;margin-bottom:10px;filter:drop-shadow(0 0 12px rgba(201,168,76,.5));animation:wandFloat 3s ease-in-out infinite}
-.modal-title{font-family:'Cinzel',serif;font-size:.95rem;color:var(--text);text-align:center;margin-bottom:3px;letter-spacing:.06em}
-.modal-sub{font-size:.76rem;color:var(--text2);text-align:center;font-style:italic;margin-bottom:16px}
-.batt-row{display:flex;align-items:center;gap:9px;background:rgba(0,0,0,.3);border:1px solid rgba(201,168,76,.1);border-radius:var(--r);padding:10px 13px;margin-bottom:12px}
+.modal-title{font-family:‘Cinzel’,serif;font-size:.95rem;color:var(–text);text-align:center;margin-bottom:3px;letter-spacing:.06em}
+.modal-sub{font-size:.76rem;color:var(–text2);text-align:center;font-style:italic;margin-bottom:16px}
+.batt-row{display:flex;align-items:center;gap:9px;background:rgba(0,0,0,.3);border:1px solid rgba(201,168,76,.1);border-radius:var(–r);padding:10px 13px;margin-bottom:12px}
 .batt-track{flex:1;height:6px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden}
 .batt-fill{height:100%;background:linear-gradient(90deg,#50c878,#80ffb0);border-radius:3px;transition:width .5s}
-.modal-btn{width:100%;padding:14px;background:linear-gradient(135deg,var(--house-p),rgba(201,168,76,.1));border:1px solid var(--house-s);border-radius:var(--r);color:var(--gold2);font-family:'Cinzel',serif;font-size:.9rem;cursor:pointer;letter-spacing:.05em;margin-bottom:9px;transition:all .3s}
-.modal-cancel{width:100%;padding:12px;background:transparent;border:1px solid rgba(201,168,76,.12);border-radius:var(--r);color:var(--text2);font-family:'Cinzel',serif;font-size:.82rem;cursor:pointer}
+.modal-btn{width:100%;padding:14px;background:linear-gradient(135deg,var(–house-p),rgba(201,168,76,.1));border:1px solid var(–house-s);border-radius:var(–r);color:var(–gold2);font-family:‘Cinzel’,serif;font-size:.9rem;cursor:pointer;letter-spacing:.05em;margin-bottom:9px;transition:all .3s}
+.modal-cancel{width:100%;padding:12px;background:transparent;border:1px solid rgba(201,168,76,.12);border-radius:var(–r);color:var(–text2);font-family:‘Cinzel’,serif;font-size:.82rem;cursor:pointer}
 
-.toast{position:fixed;top:calc(16px + var(--sat));left:50%;transform:translateX(-50%) translateY(-90px);z-index:999;background:rgba(10,5,24,.96);border:1px solid var(--gold);border-radius:28px;padding:9px 18px;font-family:'Cinzel',serif;font-size:.74rem;color:var(--gold2);box-shadow:0 0 24px rgba(201,168,76,.3);transition:transform .4s cubic-bezier(.16,1,.3,1);pointer-events:none;white-space:nowrap;backdrop-filter:blur(12px);letter-spacing:.05em}
+.toast{position:fixed;top:calc(16px + var(–sat));left:50%;transform:translateX(-50%) translateY(-90px);z-index:999;background:rgba(10,5,24,.96);border:1px solid var(–gold);border-radius:28px;padding:9px 18px;font-family:‘Cinzel’,serif;font-size:.74rem;color:var(–gold2);box-shadow:0 0 24px rgba(201,168,76,.3);transition:transform .4s cubic-bezier(.16,1,.3,1);pointer-events:none;white-space:nowrap;backdrop-filter:blur(12px);letter-spacing:.05em}
 .toast.show{transform:translateX(-50%) translateY(0)}
-.browser-warn{position:fixed;top:calc(8px + var(--sat));left:10px;right:10px;background:rgba(100,40,0,.92);border:1px solid rgba(201,100,20,.45);border-radius:var(--r);padding:9px 13px;font-size:.74rem;color:rgba(255,180,100,.9);z-index:500;display:none;backdrop-filter:blur(10px)}
+.browser-warn{position:fixed;top:calc(8px + var(–sat));left:10px;right:10px;background:rgba(100,40,0,.92);border:1px solid rgba(201,100,20,.45);border-radius:var(–r);padding:9px 13px;font-size:.74rem;color:rgba(255,180,100,.9);z-index:500;display:none;backdrop-filter:blur(10px)}
 .browser-warn.show{display:block}
+
+/* ═══ CEREMONY SCREEN ═══ */
+#ceremony{background:#000;justify-content:center;align-items:center}
+.cer-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.4}
+.cer-overlay{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(80,40,160,.3),rgba(0,0,0,.85))}
+.cer-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:space-between;width:100%;height:100%;padding:calc(60px + var(–sat)) 20px calc(40px + var(–sab))}
+.cer-titles{text-align:center}
+.cer-title{font-family:‘Cinzel’,serif;font-size:1.4rem;color:var(–gold);letter-spacing:.1em;text-shadow:0 0 30px rgba(201,168,76,.8);opacity:0;animation:fadeInUp 1s ease .5s forwards}
+.cer-sub{font-family:‘Cinzel’,serif;font-size:.75rem;color:rgba(201,168,76,.55);letter-spacing:.22em;text-transform:uppercase;margin-top:6px;opacity:0;animation:fadeInUp 1s ease .9s forwards}
+.cer-wand-wrap{position:relative;width:220px;height:320px;flex-shrink:0}
+.cer-box-img{width:100%;position:absolute;bottom:0;left:0;filter:drop-shadow(0 0 20px rgba(201,168,76,.3));opacity:0;animation:sUp .8s ease 1.2s forwards}
+.cer-wand-img{width:55%;position:absolute;bottom:38%;left:22.5%;filter:drop-shadow(0 0 30px rgba(201,168,76,.5));opacity:0;transform:translateY(70px);transition:all 1.4s cubic-bezier(.16,1,.3,1)}
+.cer-wand-img.rise{opacity:1;transform:translateY(0);filter:drop-shadow(0 0 50px rgba(201,168,76,.9))}
+.cer-bottom{display:flex;flex-direction:column;align-items:center;gap:14px}
+.cer-hint{font-family:‘Crimson Text’,serif;font-size:.9rem;color:var(–text2);text-align:center;font-style:italic;animation:hintBlink 2.5s ease-in-out infinite}
+.cer-connect-btn{padding:13px 28px;background:linear-gradient(135deg,var(–house-p),rgba(201,168,76,.15));border:1px solid var(–house-s);border-radius:28px;color:var(–gold2);font-family:‘Cinzel’,serif;font-size:.82rem;cursor:pointer;letter-spacing:.06em;display:none}
+.cer-connect-btn.show{display:block}
+.cer-skip{font-family:‘Cinzel’,serif;font-size:.65rem;color:var(–text3);letter-spacing:.1em;cursor:pointer;padding:8px}
+.cer-glow{position:absolute;left:50%;top:30%;transform:translate(-50%,-50%);width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,.4),transparent);opacity:0;transition:opacity 1s;pointer-events:none}
+.cer-glow.on{opacity:1;animation:orbPulse 2s ease-in-out infinite}
 </style>
+
 </head>
 <body>
 <div class="starfield" id="starfield"></div>
 
 <!-- SPLASH -->
+
 <div class="screen active" id="splash">
   <video id="splashVideo" autoplay muted playsinline></video>
   <div class="splash-logo"><h1>Harry Potter</h1><p>Magic Caster Wand</p></div>
 </div>
 
+<!-- CEREMONY -->
+
+<div class="screen" id="ceremony">
+  <img class="cer-bg" src="assets/images/ui/login_bg.webp" alt="">
+  <div class="cer-overlay"></div>
+  <div class="cer-content">
+    <div class="cer-titles">
+      <div class="cer-title">Harry Potter</div>
+      <div class="cer-sub">Magic Caster Wand</div>
+    </div>
+    <div class="cer-wand-wrap">
+      <div class="cer-glow" id="cerGlow"></div>
+      <img class="cer-box-img" id="cerBoxImg" src="assets/images/ui/wand_box_list.webp" alt="">
+      <img class="cer-wand-img" id="cerWandImg" src="assets/images/ui/wand_defiant_list.webp" alt="">
+    </div>
+    <div class="cer-bottom">
+      <div class="cer-hint" id="cerHint">Open the box to begin your journey</div>
+      <button class="cer-connect-btn" id="cerConnectBtn" onclick="connectBoxBLE()">🪄 Connect Box</button>
+      <div class="cer-skip" onclick="skipCeremony()">Skip →</div>
+    </div>
+  </div>
+</div>
+
 <!-- PROFILE SETUP -->
+
 <div class="screen" id="profile">
   <div class="setup-hero">
     <div class="ph-title">Welcome, Witch or Wizard</div>
@@ -325,6 +372,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--hp2);color:var
 </div>
 
 <!-- MAIN -->
+
 <div class="screen" id="main">
   <div class="topbar">
     <div class="tb-shield" id="tbShield" onclick="showWandModal()">
@@ -363,6 +411,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--hp2);color:var
 </div>
 
 <!-- SPELL DETAIL -->
+
 <div class="screen" id="detail">
   <div class="det-top">
     <button class="back-btn" onclick="goBack()">←</button>
@@ -395,6 +444,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--hp2);color:var
 </div>
 
 <!-- TUTORIAL -->
+
 <div class="screen" id="tutorial">
   <div class="tut-top">
     <button class="back-btn" onclick="stopTutorial()">←</button>
@@ -413,6 +463,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--hp2);color:var
 </div>
 
 <!-- CASTING -->
+
 <div class="screen" id="casting">
   <div class="cast-top">
     <button class="back-btn" onclick="goBack()">←</button>
@@ -439,6 +490,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--hp2);color:var
 </div>
 
 <!-- DUEL -->
+
 <div class="screen" id="duel">
   <div class="duel-top">
     <button class="back-btn" onclick="goBack()">←</button>
@@ -474,6 +526,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--hp2);color:var
 </div>
 
 <!-- PROFILE SCREEN -->
+
 <div class="screen" id="profileScreen">
   <div class="prof-top">
     <button class="back-btn" onclick="goBack()">←</button>
@@ -500,6 +553,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--hp2);color:var
 </div>
 
 <!-- WAND MODAL -->
+
 <div class="modal-wrap" id="wandModal" onclick="if(event.target===this)closeWandModal()">
   <div class="modal-sheet">
     <div class="modal-handle"></div>
@@ -560,27 +614,27 @@ const SPELL_GESTURE_PATHS = {
 };
 
 const SPELLS = [
-  {key:'lumos',name:'Lumos',pronounce:'LOO-mos',emoji:'💡',color:'#ffe87a',led:'FFFF88',type:'Charm',yr:1,xp:10,atk:0,def:0,lore:'The Wand-Lighting Charm, one of the first spells taught at Hogwarts. A sharp upward flick illuminates the wand tip with a pure white light.',howTo:'<strong>Hold</strong> the touch sensor. Flick wand sharply <strong>upward</strong>. <strong>Release</strong> at the top.'},
-  {key:'nox',name:'Nox',pronounce:'NOCKS',emoji:'🌑',color:'#5a5aaa',led:'000000',type:'Charm',yr:1,xp:10,atk:0,def:0,lore:'Counter-charm to Lumos. A downward flick extinguishes the wand light, returning the world to darkness.',howTo:'<strong>Hold</strong> the sensor. Flick wand sharply <strong>downward</strong>. <strong>Release</strong>.'},
-  {key:'alohomora',name:'Alohomora',pronounce:'al-OH-ho-MOR-ah',emoji:'🗝️',color:'#c0a060',led:'AA6611',type:'Charm',yr:1,xp:10,atk:0,def:0,lore:'The Unlocking Charm. A clockwise twist opens any locked door.',howTo:'<strong>Hold</strong> the sensor. Twist wand <strong>clockwise</strong> like turning a key. <strong>Release</strong>.'},
-  {key:'scourgify',name:'Scourgify',pronounce:'SKUR-jih-fy',emoji:'🧹',color:'#aaffee',led:'88DDCC',type:'Charm',yr:1,xp:10,atk:0,def:0,lore:'A cleaning charm that removes dirt from any surface.',howTo:'<strong>Hold</strong> the sensor. <strong>Wave gently</strong> back and forth. <strong>Release</strong>.'},
-  {key:'expelliarmus',name:'Expelliarmus',pronounce:'ex-PEL-ee-AR-mus',emoji:'💥',color:'#e05050',led:'FF2200',type:'Charm',yr:1,xp:15,atk:25,def:0,lore:'The Disarming Charm — Harry\'s signature spell. Forces the target to drop whatever they hold.',howTo:'<strong>Hold</strong> the sensor. Sweep <strong>right</strong> then sharply <strong>down</strong>. <strong>Release</strong>.'},
-  {key:'wingardium_leviosa',name:'Wingardium Leviosa',pronounce:'win-GAR-dee-um leh-vee-OH-sah',emoji:'🪶',color:'#80c0ff',led:'4488FF',type:'Charm',yr:2,xp:20,atk:0,def:0,lore:'The Levitation Charm. Swish and flick! Levi-O-sa, not Levio-SA!',howTo:'<strong>Hold</strong> the sensor. Swoop <strong>left</strong> then flick <strong>upward</strong>. <strong>Release</strong>.'},
-  {key:'reparo',name:'Reparo',pronounce:'reh-PAR-oh',emoji:'🔧',color:'#80ffb0',led:'44AA66',type:'Charm',yr:2,xp:15,atk:0,def:0,lore:'The Mending Charm. A figure-eight motion repairs broken objects.',howTo:'<strong>Hold</strong> the sensor. Draw a smooth <strong>figure-8</strong> in the air. <strong>Release</strong>.'},
-  {key:'accio',name:'Accio',pronounce:'AK-ee-oh',emoji:'🌀',color:'#c080ff',led:'8844CC',type:'Charm',yr:2,xp:15,atk:0,def:0,lore:'The Summoning Charm. A sweeping arc draws any named object to your hand.',howTo:'<strong>Hold</strong> the sensor. Wide arc <strong>pulling inward</strong> toward your chest. <strong>Release</strong>.'},
-  {key:'stupefy',name:'Stupefy',pronounce:'STOO-peh-fy',emoji:'⚡',color:'#ff4080',led:'FF2255',type:'Jinx',yr:2,xp:25,atk:35,def:0,lore:'The Stunning Spell. A sharp forward jab sends a bolt of red light that renders the target unconscious.',howTo:'<strong>Hold</strong> the sensor. <strong>Jab sharply forward</strong> then yank back. <strong>Release</strong>.'},
-  {key:'protego',name:'Protego',pronounce:'pro-TAY-go',emoji:'🛡️',color:'#d0d0ff',led:'AAAAEE',type:'Charm',yr:3,xp:20,atk:0,def:40,lore:'The Shield Charm. A wide sweeping arc creates an invisible barrier.',howTo:'<strong>Hold</strong> the sensor. Wide arc <strong>left to right</strong>. <strong>Release</strong>.'},
-  {key:'revelio',name:'Revelio',pronounce:'reh-VEL-ee-oh',emoji:'👁️',color:'#ffd080',led:'CC8822',type:'Charm',yr:3,xp:20,atk:0,def:0,lore:'The Revealing Charm. A circle and tap reveals hidden objects and people.',howTo:'<strong>Hold</strong> the sensor. Draw a <strong>clockwise circle</strong> then tap <strong>down</strong>. <strong>Release</strong>.'},
-  {key:'riddikulus',name:'Riddikulus',pronounce:'rih-DIK-yoo-lus',emoji:'🎪',color:'#ffcc44',led:'FFCC44',type:'Charm',yr:3,xp:20,atk:0,def:0,lore:'Defeats a Boggart by making it funny. Think of something hilarious!',howTo:'<strong>Hold</strong> the sensor. Sharp <strong>upward flick</strong> while thinking of something funny. <strong>Release</strong>!'},
-  {key:'incendio',name:'Incendio',pronounce:'in-SEN-dee-oh',emoji:'🔥',color:'#ff6020',led:'CC4400',type:'Charm',yr:3,xp:20,atk:20,def:0,lore:'The Fire-Making Spell. A thrust produces a jet of flame.',howTo:'<strong>Hold</strong> the sensor. <strong>Thrust forward</strong> sharply. <strong>Release</strong>.'},
-  {key:'aguamenti',name:'Aguamenti',pronounce:'ah-GWAH-men-tee',emoji:'💧',color:'#40a0ff',led:'2266AA',type:'Charm',yr:3,xp:15,atk:0,def:0,lore:'The Water-Making Spell. A flowing wave produces a jet of water.',howTo:'<strong>Hold</strong> the sensor. <strong>Wave left and right</strong> like flowing water. <strong>Release</strong>.'},
-  {key:'expecto_patronum',name:'Expecto Patronum',pronounce:'ex-PEK-toh pah-TROH-num',emoji:'🦌',color:'#a0d8ff',led:'88CCFF',type:'Charm',yr:4,xp:50,atk:0,def:60,lore:'The most powerful defensive spell. A spiral channels your happiest memory into a silver guardian.',howTo:'<strong>Hold</strong> the sensor. Large <strong>clockwise spiral</strong> then thrust forward. Think of your <em>happiest</em> memory. <strong>Release</strong>.'},
-  {key:'confringo',name:'Confringo',pronounce:'con-FRING-oh',emoji:'💣',color:'#ff4400',led:'FF2200',type:'Curse',yr:4,xp:30,atk:45,def:0,lore:'The Blasting Curse. A powerful thrust causes violent explosions.',howTo:'<strong>Hold</strong> the sensor. Powerful <strong>forward thrust</strong>. <strong>Release</strong>.'},
-  {key:'petrificus_totalus',name:'Petrificus Totalus',pronounce:'pe-TRIF-i-cus to-TAY-lus',emoji:'🪨',color:'#aaaaaa',led:'888888',type:'Curse',yr:4,xp:25,atk:30,def:0,lore:'Full Body-Bind Curse. The target\'s limbs snap together rigid as a board.',howTo:'<strong>Hold</strong> the sensor. Stiff straight <strong>forward thrust</strong>. <strong>Release</strong>.'},
-  {key:'bombarda',name:'Bombarda',pronounce:'bom-BAR-dah',emoji:'💥',color:'#ff6600',led:'FF4400',type:'Charm',yr:5,xp:30,atk:40,def:0,lore:'The Exploding Charm. Targeted explosions blast through walls.',howTo:'<strong>Hold</strong> the sensor. Explosive <strong>forward thrust</strong>. <strong>Release</strong>.'},
-  {key:'impedimenta',name:'Impedimenta',pronounce:'im-ped-ih-MEN-tah',emoji:'🛑',color:'#ff8844',led:'FF6622',type:'Jinx',yr:5,xp:20,atk:15,def:20,lore:'The Impediment Jinx. Slows or stops the target.',howTo:'<strong>Hold</strong> the sensor. Controlled <strong>forward push</strong>. <strong>Release</strong>.'},
-  {key:'flipendo',name:'Flipendo',pronounce:'flih-PEN-doh',emoji:'🔄',color:'#88aaff',led:'4466FF',type:'Jinx',yr:6,xp:25,atk:20,def:0,lore:'The Knockback Jinx. Sends targets flying backward.',howTo:'<strong>Hold</strong> the sensor. Quick sharp <strong>jab forward</strong>. <strong>Release</strong> fast.'},
-  {key:'colovaria',name:'Colovaria',pronounce:'col-oh-VAR-ee-ah',emoji:'🌈',color:'#ff88ff',led:'FF44FF',type:'Charm',yr:7,xp:30,atk:0,def:0,lore:'The Colour-Change Charm. Shifts colour through the entire spectrum.',howTo:'<strong>Hold</strong> the sensor. Smooth <strong>figure-8</strong>. <strong>Release</strong>.'},
+  {key:'lumos',name:'Lumos',pronounce:'LOO-mos',emoji:'💡',color:'#ffe87a',led:'FFFF88',type:'Charm',yr:1,xp:10,atk:0,def:0,lore:'The Wand-Lighting Charm, one of the first spells taught at Hogwarts. A sharp upward flick illuminates the wand tip with a pure white light.',howTo:'How to cast: Flick your wand sharply <strong>upward</strong> like pointing at the ceiling.'},
+  {key:'nox',name:'Nox',pronounce:'NOCKS',emoji:'🌑',color:'#5a5aaa',led:'000000',type:'Charm',yr:1,xp:10,atk:0,def:0,lore:'Counter-charm to Lumos. A downward flick extinguishes the wand light, returning the world to darkness.',howTo:'How to cast: Flick your wand sharply <strong>downward</strong> toward the floor.'},
+  {key:'alohomora',name:'Alohomora',pronounce:'al-OH-ho-MOR-ah',emoji:'🗝️',color:'#c0a060',led:'AA6611',type:'Charm',yr:1,xp:10,atk:0,def:0,lore:'The Unlocking Charm. A clockwise twist opens any locked door.',howTo:'How to cast: Rotate your wand in a <strong>clockwise circle</strong> like turning a key.'},
+  {key:'scourgify',name:'Scourgify',pronounce:'SKUR-jih-fy',emoji:'🧹',color:'#aaffee',led:'88DDCC',type:'Charm',yr:1,xp:10,atk:0,def:0,lore:'A cleaning charm that removes dirt from any surface.',howTo:'How to cast: <strong>Wave your wand</strong> gently back and forth.'},
+  {key:'expelliarmus',name:'Expelliarmus',pronounce:'ex-PEL-ee-AR-mus',emoji:'💥',color:'#e05050',led:'FF2200',type:'Charm',yr:1,xp:15,atk:25,def:0,lore:'The Disarming Charm — Harry\'s signature spell. Forces the target to drop whatever they hold.',howTo:'How to cast: Sweep your wand to the <strong>right</strong> then pull sharply <strong>down</strong> like a J shape.'},
+  {key:'wingardium_leviosa',name:'Wingardium Leviosa',pronounce:'win-GAR-dee-um leh-vee-OH-sah',emoji:'🪶',color:'#80c0ff',led:'4488FF',type:'Charm',yr:2,xp:20,atk:0,def:0,lore:'The Levitation Charm. Swish and flick! Levi-O-sa, not Levio-SA!',howTo:'How to cast: Swoop your wand to the <strong>left</strong> in a wide arc then flick it <strong>upward</strong>.'},
+  {key:'reparo',name:'Reparo',pronounce:'reh-PAR-oh',emoji:'🔧',color:'#80ffb0',led:'44AA66',type:'Charm',yr:2,xp:15,atk:0,def:0,lore:'The Mending Charm. A figure-eight motion repairs broken objects.',howTo:'How to cast: Draw a smooth <strong>figure-8</strong> in the air — loop right, cross over, loop left.'},
+  {key:'accio',name:'Accio',pronounce:'AK-ee-oh',emoji:'🌀',color:'#c080ff',led:'8844CC',type:'Charm',yr:2,xp:15,atk:0,def:0,lore:'The Summoning Charm. A sweeping arc draws any named object to your hand.',howTo:'How to cast: Make a wide sweeping arc <strong>pulling toward you</strong> like drawing something in.'},
+  {key:'stupefy',name:'Stupefy',pronounce:'STOO-peh-fy',emoji:'⚡',color:'#ff4080',led:'FF2255',type:'Jinx',yr:2,xp:25,atk:35,def:0,lore:'The Stunning Spell. A sharp forward jab sends a bolt of red light that renders the target unconscious.',howTo:'How to cast: <strong>Jab your wand forward</strong> sharply at your target.'},
+  {key:'protego',name:'Protego',pronounce:'pro-TAY-go',emoji:'🛡️',color:'#d0d0ff',led:'AAAAEE',type:'Charm',yr:3,xp:20,atk:0,def:40,lore:'The Shield Charm. A wide sweeping arc creates an invisible barrier.',howTo:'How to cast: Sweep your wand in a wide arc <strong>from left to right</strong> in front of you.'},
+  {key:'revelio',name:'Revelio',pronounce:'reh-VEL-ee-oh',emoji:'👁️',color:'#ffd080',led:'CC8822',type:'Charm',yr:3,xp:20,atk:0,def:0,lore:'The Revealing Charm. A circle and tap reveals hidden objects and people.',howTo:'How to cast: Draw a <strong>clockwise circle</strong> in the air then flick <strong>downward</strong>.'},
+  {key:'riddikulus',name:'Riddikulus',pronounce:'rih-DIK-yoo-lus',emoji:'🎪',color:'#ffcc44',led:'FFCC44',type:'Charm',yr:3,xp:20,atk:0,def:0,lore:'Defeats a Boggart by making it funny. Think of something hilarious!',howTo:'How to cast: Give your wand a sharp <strong>upward flick</strong> while thinking of something funny.'},
+  {key:'incendio',name:'Incendio',pronounce:'in-SEN-dee-oh',emoji:'🔥',color:'#ff6020',led:'CC4400',type:'Charm',yr:3,xp:20,atk:20,def:0,lore:'The Fire-Making Spell. A thrust produces a jet of flame.',howTo:'How to cast: <strong>Thrust your wand forward</strong> toward your target.'},
+  {key:'aguamenti',name:'Aguamenti',pronounce:'ah-GWAH-men-tee',emoji:'💧',color:'#40a0ff',led:'2266AA',type:'Charm',yr:3,xp:15,atk:0,def:0,lore:'The Water-Making Spell. A flowing wave produces a jet of water.',howTo:'How to cast: <strong>Wave your wand</strong> gently from side to side like flowing water.'},
+  {key:'expecto_patronum',name:'Expecto Patronum',pronounce:'ex-PEK-toh pah-TROH-num',emoji:'🦌',color:'#a0d8ff',led:'88CCFF',type:'Charm',yr:4,xp:50,atk:0,def:60,lore:'The most powerful defensive spell. A spiral channels your happiest memory into a silver guardian.',howTo:'How to cast: Make a large <strong>clockwise spiral</strong> then thrust forward. Think of your happiest memory.'},
+  {key:'confringo',name:'Confringo',pronounce:'con-FRING-oh',emoji:'💣',color:'#ff4400',led:'FF2200',type:'Curse',yr:4,xp:30,atk:45,def:0,lore:'The Blasting Curse. A powerful thrust causes violent explosions.',howTo:'How to cast: Drive your wand <strong>powerfully forward</strong> like an explosion.'},
+  {key:'petrificus_totalus',name:'Petrificus Totalus',pronounce:'pe-TRIF-i-cus to-TAY-lus',emoji:'🪨',color:'#aaaaaa',led:'888888',type:'Curse',yr:4,xp:25,atk:30,def:0,lore:'Full Body-Bind Curse. The target\'s limbs snap together rigid as a board.',howTo:'How to cast: <strong>Thrust your wand straight forward</strong> in one stiff motion.'},
+  {key:'bombarda',name:'Bombarda',pronounce:'bom-BAR-dah',emoji:'💥',color:'#ff6600',led:'FF4400',type:'Charm',yr:5,xp:30,atk:40,def:0,lore:'The Exploding Charm. Targeted explosions blast through walls.',howTo:'How to cast: <strong>Thrust your wand forward</strong> with as much force as you can.'},
+  {key:'impedimenta',name:'Impedimenta',pronounce:'im-ped-ih-MEN-tah',emoji:'🛑',color:'#ff8844',led:'FF6622',type:'Jinx',yr:5,xp:20,atk:15,def:20,lore:'The Impediment Jinx. Slows or stops the target.',howTo:'How to cast: Give a firm <strong>forward push</strong> with your wand.'},
+  {key:'flipendo',name:'Flipendo',pronounce:'flih-PEN-doh',emoji:'🔄',color:'#88aaff',led:'4466FF',type:'Jinx',yr:6,xp:25,atk:20,def:0,lore:'The Knockback Jinx. Sends targets flying backward.',howTo:'How to cast: <strong>Jab your wand forward</strong> quickly — speed is everything.'},
+  {key:'colovaria',name:'Colovaria',pronounce:'col-oh-VAR-ee-ah',emoji:'🌈',color:'#ff88ff',led:'FF44FF',type:'Charm',yr:7,xp:30,atk:0,def:0,lore:'The Colour-Change Charm. Shifts colour through the entire spectrum.',howTo:'How to cast: Draw a smooth flowing <strong>figure-8</strong> in the air.'},
 ];
 
 const DUEL_SPELLS=[
@@ -672,9 +726,9 @@ function init(){
 
   if(load()&&S.profile){
     applyHouse(S.profile.house);
-    startApp();
+    startCeremony();
   } else {
-    setTimeout(()=>{show('profile');snd('housesel');},2600);
+    startCeremony();
   }
 }
 
@@ -1006,7 +1060,121 @@ function onSpell(ev){
 
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
 
+
+// ═══ BOX BLE ═══
+const BOX = {
+  SERVICE: '57420001-587e-48a0-974c-54686f72c577',
+  CMD:     '57420002-587e-48a0-974c-54686f72c577',
+  NOTIFY:  '57420003-587e-48a0-974c-54686f72c577',
+};
+let boxDev=null, boxCmd=null, boxOn=false;
+
+async function connectBoxBLE() {
+  if (!navigator.bluetooth) { skipCeremony(); return; }
+  try {
+    document.getElementById('cerHint').textContent = 'Searching for your box…';
+    boxDev = await navigator.bluetooth.requestDevice({
+      filters: [{namePrefix: 'MCB'}],
+      optionalServices: [BOX.SERVICE]
+    });
+    const srv = await boxDev.gatt.connect();
+    const ws = await srv.getPrimaryService(BOX.SERVICE);
+    boxCmd = await ws.getCharacteristic(BOX.CMD).catch(()=>null);
+    const notify = await ws.getCharacteristic(BOX.NOTIFY);
+    await notify.startNotifications();
+    notify.addEventListener('characteristicvaluechanged', onBoxEvent);
+    boxOn = true;
+    document.getElementById('cerHint').textContent = 'Box connected — open the lid!';
+    // Light up box LEDs blue while waiting
+    sendBoxCmd([{"command":"changeled","group":0,"color":"0055FF","duration":2.0},
+                {"command":"changeled","group":1,"color":"0055FF","duration":2.0}]);
+  } catch(e) {
+    document.getElementById('cerHint').textContent = 'Open the box to begin your journey';
+    document.getElementById('cerConnectBtn').classList.add('show');
+  }
+}
+
+async function sendBoxCmd(cmds) {
+  if (!boxCmd) return;
+  try { await boxCmd.writeValueWithoutResponse(new TextEncoder().encode(JSON.stringify(cmds))); }
+  catch(e) {}
+}
+
+function onBoxEvent(event) {
+  // Box lid opened — trigger ceremony
+  const bytes = new Uint8Array(event.target.value.buffer);
+  console.log('Box event:', Array.from(bytes).map(b=>b.toString(16)).join(' '));
+  triggerCeremony();
+}
+
+function triggerCeremony() {
+  // Play stinger
+  snd('stinger');
+  document.getElementById('cerHint').textContent = 'Your wand has been revealed…';
+  // Glow on
+  document.getElementById('cerGlow').classList.add('on');
+  // Light up box gold
+  sendBoxCmd([
+    {"command":"buzz","duration":0.3},
+    {"command":"changeled","group":0,"color":"FFD700","duration":2.0},
+    {"command":"changeled","group":1,"color":"FFD700","duration":2.0},
+  ]);
+  // Wand rises after 800ms
+  setTimeout(() => {
+    document.getElementById('cerWandImg').classList.add('rise');
+    // Update wand image based on house
+    const house = S.profile?.house || selHouse || 'Gryffindor';
+    const wandKey = HOUSES[house]?.wand || 'defiant';
+    document.getElementById('cerWandImg').src = `assets/images/ui/wand_${wandKey}_list.webp`;
+  }, 800);
+  // Success sound after 2s
+  setTimeout(() => {
+    snd('ceremony');
+    sendBoxCmd([{"command":"clearleds"}]);
+  }, 2400);
+  // Show connect wand button after 3.5s
+  setTimeout(() => {
+    document.getElementById('cerHint').textContent = 'Now connect your wand to begin';
+    document.getElementById('cerConnectBtn').textContent = '🪄 Connect Wand';
+    document.getElementById('cerConnectBtn').onclick = () => {
+      skipCeremony();
+      setTimeout(showWandModal, 400);
+    };
+    document.getElementById('cerConnectBtn').classList.add('show');
+  }, 3500);
+}
+
+function skipCeremony() {
+  localStorage.setItem('mcw_ceremony_seen', '1');
+  if (S.profile) {
+    show('main', false);
+  } else {
+    show('profile');
+    snd('housesel');
+  }
+}
+
+function startCeremony() {
+  const seen = localStorage.getItem('mcw_ceremony_seen');
+  if (seen && S.profile) {
+    // Skip directly to app
+    show('main', false);
+    return;
+  }
+  // Show ceremony screen
+  show('ceremony', false);
+  // After 2s show connect box button
+  setTimeout(() => {
+    if (!boxOn) {
+      document.getElementById('cerConnectBtn').classList.add('show');
+    }
+  }, 2000);
+  // Try auto-connect box
+  // (Web Bluetooth requires user gesture so we show the button instead)
+}
+
 window.addEventListener('load',init);
 </script>
+
 </body>
 </html>
