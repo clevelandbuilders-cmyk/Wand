@@ -1174,20 +1174,23 @@ async function ariLight(cmd) {
   }
 
   try {
+    const body = JSON.stringify({
+      requestId: 'wand-' + Date.now(),
+      payload: {sku: ARI_MODEL, device: ARI_DEVICE, capability}
+    });
+    console.log('Sending to Govee:', body);
     const res = await fetch(`${PROXY}/openapi/router/api/v1/device/control`, {
       method: 'POST',
       headers: {'Content-Type':'application/json', 'Govee-API-Key': GOVEE_API_KEY},
-      body: JSON.stringify({
-        requestId: 'wand-' + Date.now(),
-        payload: {sku: ARI_MODEL, device: ARI_DEVICE, capability}
-      })
+      body: body
     });
-    const json = await res.json();
-    console.log('Ari:', JSON.stringify(json));
-    return json;
+    const text = await res.text();
+    console.log('Govee response status:', res.status, text);
+    toast('💡 ' + res.status + ': ' + text.substring(0,50));
+    return JSON.parse(text);
   } catch(e) {
-    console.log('Ari error:', e);
-    toast('💡 ' + e.message);
+    console.log('Ari error:', e.message);
+    toast('💡 Error: ' + e.message);
   }
 }
 
