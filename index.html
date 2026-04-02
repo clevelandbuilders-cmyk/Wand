@@ -724,6 +724,7 @@ function applyHouse(house){
 
 // ═══ START APP ═══
 function startApp(){
+  initVoice();
   S.stack=['main'];
   buildSpellbook();buildDuelGrid();updateTopbar();updateXP();
   show('main',false);
@@ -1024,10 +1025,10 @@ async function sendCmd(cmds){if(!cmdChr)return;try{await cmdChr.writeValueWithou
 function sendLED(hex){sendCmd([0,1,2,3].map(g=>({command:'changeled',group:g,color:hex,duration:0.5})));}
 // Map raw wand gesture names to our spell keys
 const WAND_SPELL_MAP = {
-  'serpensortia': 'lumos',
-  'lumos': 'expelliarmus',
-  'protego': 'nox',
-  'nox': 'protego',
+  'serpensortia': 'lumos',    // up flick = Lumos
+  'lumos': 'lumos',           // upside down V = also Lumos  
+  'protego': 'nox',           // down flick = Nox
+  'nox': 'nox',
   'accio': 'accio',
   'wingardium leviosa': 'wingardium_leviosa',
   'expelliarmus': 'expelliarmus',
@@ -1056,9 +1057,17 @@ function onSpell(ev){
     const mappedKey = WAND_SPELL_MAP[name] || 
       SPELLS.find(x=>x.key.replace(/_/g,' ')===name||x.key===name.replace(/ /g,'_'))?.key ||
       name.replace(/ /g,'_');
-    castSpell(mappedKey);
-    const cur=document.querySelector('.screen.active')?.id;
-    if(cur!=='casting'&&cur!=='duel')goCasting();
+    // Wand motion detected - start voice listening instead of auto-casting
+    // This lets the kid say the spell name
+    if (cur !== 'casting') goCasting();
+    startListening();
+    // Also cast the wand's detected spell as fallback after 4s if no voice
+    const fallbackSpell = mappedKey;
+    listenTimeout = setTimeout(() => {
+      stopListening();
+      castSpell(fallbackSpell);
+      goveeSpellLight(fallbackSpell);
+    }, 4000);
   }
 }
 
@@ -1209,6 +1218,114 @@ async function goveeSpellLight(spellKey) {
       }
     }, 4000);
   }
+}
+
+
+// ═══ VOICE RECOGNITION ═══
+let recognition = null;
+let isListening = false;
+let listenTimeout = null;
+
+const VOICE_SPELLS = [
+  'lumos','nox','alohomora','expelliarmus','wingardium leviosa','accio',
+  'stupefy','protego','revelio','riddikulus','incendio','aguamenti',
+  'expecto patronum','confringo','petrificus totalus','bombarda',
+  'impedimenta','flipendo','colovaria','reparo','scourgify','serpensortia',
+  'finite','silencio','flagrate','descendo','ascendio','ventus',
+];
+
+function initVoice() {
+  if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+    console.log('Speech recognition not supported');
+    return;
+  }
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  recognition = new SR();
+  recognition.continuous = false;
+  recognition.interimResults = false;
+  recognition.lang = 'en-US';
+  recognition.maxAlternatives = 3;
+
+  recognition.onresult = (event) => {
+    for (let i = 0; i < event.results[0].length; i++) {
+      const transcript = event.results[0][i].transcript.trim().toLowerCase();
+      console.log('Heard:', transcript);
+      
+      // Check if it matches a spell
+      const matched = VOICE_SPELLS.find(s => 
+        transcript.includes(s) || s.includes(transcript)
+      );
+      
+      if (matched) {
+        const key = matched.replace(/ /g,'_');
+        stopListening();
+        castSpell(key);
+        goveeSpellLight(key);
+        const cur = document.querySelector('.screen.active')?.id;
+        if(cur !== 'casting' && cur !== 'duel') goCasting();
+        return;
+      }
+    }
+    // No match — show subtle feedback
+    showListenIndicator('Try again…', false);
+    setTimeout(() => hideListenIndicator(), 1500);
+  };
+
+  recognition.onerror = (e) => {
+    console.log('Speech error:', e.error);
+    stopListening();
+  };
+
+  recognition.onend = () => {
+    isListening = false;
+    hideListenIndicator();
+  };
+}
+
+function startListening() {
+  if (!recognition) initVoice();
+  if (!recognition || isListening) return;
+  
+  try {
+    recognition.start();
+    isListening = true;
+    showListenIndicator('Speak the incantation…', true);
+    
+    // Auto stop after 4 seconds
+    listenTimeout = setTimeout(() => {
+      stopListening();
+    }, 4000);
+  } catch(e) {
+    console.log('Recognition start error:', e);
+  }
+}
+
+function stopListening() {
+  if (listenTimeout) { clearTimeout(listenTimeout); listenTimeout = null; }
+  if (recognition && isListening) {
+    try { recognition.stop(); } catch(e) {}
+  }
+  isListening = false;
+  hideListenIndicator();
+}
+
+function showListenIndicator(msg, active) {
+  let el = document.getElementById('listenIndicator');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'listenIndicator';
+    el.style.cssText = 'position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:rgba(10,5,24,.95);border:1px solid var(--gold);border-radius:28px;padding:10px 20px;font-family:Cinzel,serif;font-size:.78rem;color:var(--gold2);z-index:999;pointer-events:none;backdrop-filter:blur(12px);display:flex;align-items:center;gap:10px;transition:opacity .3s;white-space:nowrap;box-shadow:0 0 24px rgba(201,168,76,.3)';
+    document.body.appendChild(el);
+  }
+  el.innerHTML = active 
+    ? '<span style="width:10px;height:10px;border-radius:50%;background:#f0d080;animation:pip .7s infinite;flex-shrink:0"></span>' + msg
+    : msg;
+  el.style.opacity = '1';
+}
+
+function hideListenIndicator() {
+  const el = document.getElementById('listenIndicator');
+  if (el) el.style.opacity = '0';
 }
 
 window.addEventListener('load',init);
