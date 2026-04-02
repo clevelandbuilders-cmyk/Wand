@@ -1099,26 +1099,14 @@ let goveeEnabled = false;
 
 // Spell to light color mapping
 const SPELL_LIGHTS = {
-  lumos:            {r:255, g:255, b:255, brightness:100, temp:6500},
+  lumos:            {r:255, g:255, b:255, brightness:100},
   nox:              {off:true},
   incendio:         {r:255, g:60,  b:0,   brightness:100},
-  aguamenti:        {r:0,   g:100, b:255, brightness:80},
-  expecto_patronum: {r:200, g:220, b:255, brightness:100, pulse:true},
+  aguamenti:        {r:0,   g:120, b:255, brightness:80},
+  expecto_patronum: {r:220, g:235, b:255, brightness:100, pulse:true},
   stupefy:          {r:255, g:0,   b:30,  brightness:100, flash:true},
-  confringo:        {r:255, g:40,  b:0,   brightness:100, flash:true},
-  glacius:          {r:100, g:200, b:255, brightness:70},
-  colovaria:        {r:255, g:0,   b:255, brightness:100},
-  revelio:          {r:255, g:220, b:100, brightness:90},
   alohomora:        {r:255, g:180, b:50,  brightness:80},
-  wingardium_leviosa:{r:150,g:255, b:150, brightness:80},
-  expelliarmus:     {r:255, g:50,  b:50,  brightness:100, flash:true},
-  protego:          {r:180, g:180, b:255, brightness:90},
-  riddikulus:       {r:255, g:200, b:0,   brightness:100},
-  bombarda:         {r:255, g:80,  b:0,   brightness:100, flash:true},
-  accio:            {r:200, g:100, b:255, brightness:80},
-  reparo:           {r:100, g:255, b:150, brightness:70},
-  scourgify:        {r:200, g:240, b:255, brightness:80},
-  impedimenta:      {r:255, g:100, b:0,   brightness:80},
+  bombarda:         {r:255, g:50,  b:0,   brightness:100, flash:true},
 };
 
 async function goveeGet(endpoint) {
@@ -1237,6 +1225,28 @@ const VOICE_SPELLS = [
   'finite','silencio','flagrate','descendo','ascendio','ventus',
 ];
 
+// Phonetic alternatives for spells Chrome mishears
+const VOICE_ALTERNATIVES = {
+  'stupid': 'stupefy',
+  'stupid fly': 'stupefy',
+  'stupefi': 'stupefy',
+  'stupify': 'stupefy',
+  'agua men': 'aguamenti',
+  'agua menti': 'aguamenti',
+  'agua mente': 'aguamenti',
+  'agamemnon': 'aguamenti',
+  'aqua menti': 'aguamenti',
+  'aquamenti': 'aguamenti',
+  'expecto': 'expecto_patronum',
+  'expecto patronum': 'expecto_patronum',
+  'aloha mora': 'alohomora',
+  'alohamora': 'alohomora',
+  'expelliarmus': 'expelliarmus',
+  'expel': 'expelliarmus',
+  'bombarda': 'bombarda',
+  'incendio': 'incendio',
+};
+
 function initVoice() {
   if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
     console.log('Speech recognition not supported');
@@ -1255,12 +1265,20 @@ function initVoice() {
       console.log('Heard:', transcript);
       
       // Check if it matches a spell
-      const matched = VOICE_SPELLS.find(s => 
-        transcript.includes(s) || s.includes(transcript)
-      );
+      // Check phonetic alternatives first
+      let key = null;
+      for (const [alt, spellKey] of Object.entries(VOICE_ALTERNATIVES)) {
+        if (transcript.includes(alt)) { key = spellKey; break; }
+      }
+      // Then check main spell list
+      if (!key) {
+        const matched = VOICE_SPELLS.find(s => 
+          transcript.includes(s) || s.includes(transcript)
+        );
+        if (matched) key = matched.replace(/ /g,'_');
+      }
       
-      if (matched) {
-        const key = matched.replace(/ /g,'_');
+      if (key) {
         stopListening();
         castSpell(key);
         goveeSpellLight(key);
