@@ -447,6 +447,7 @@ linear-gradient(180deg,#0d0720 0%,#1a0f3e 50%,#0d0720 100%)}
     </div>
     <img class="cast-wand-img" id="castWandImg" src="assets/images/ui/wand_defiant_hand.webp" alt="">
     <div class="cast-ready-txt" id="castReadyTxt">Wave your wand to cast a spell</div>
+    <button id="micBtn" onclick="startListening()" style="position:absolute;bottom:80px;left:50%;transform:translateX(-50%);background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.35);border-radius:50%;width:56px;height:56px;font-size:1.4rem;cursor:pointer;z-index:10;transition:all .3s">🎤</button>
   </div>
 </div>
 
@@ -1310,6 +1311,12 @@ function stopListening() {
 }
 
 function showListenIndicator(msg, active) {
+  const mic = document.getElementById('micBtn');
+  if (mic) {
+    mic.style.background = active ? 'rgba(240,80,80,.4)' : 'rgba(201,168,76,.15)';
+    mic.style.borderColor = active ? 'rgba(240,80,80,.8)' : 'rgba(201,168,76,.35)';
+    mic.textContent = active ? '🔴' : '🎤';
+  }
   let el = document.getElementById('listenIndicator');
   if (!el) {
     el = document.createElement('div');
@@ -1326,6 +1333,8 @@ function showListenIndicator(msg, active) {
 function hideListenIndicator() {
   const el = document.getElementById('listenIndicator');
   if (el) el.style.opacity = '0';
+  const mic = document.getElementById('micBtn');
+  if (mic) { mic.style.background = 'rgba(201,168,76,.15)'; mic.style.borderColor = 'rgba(201,168,76,.35)'; mic.textContent = '🎤'; }
 }
 
 window.addEventListener('load',init);
