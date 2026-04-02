@@ -1120,7 +1120,7 @@ async function goveeGet(endpoint) {
 
 async function goveeControl(device, model, cmd) {
   try {
-    const res = await fetch('https://developer-api.govee.com/v1/devices/control', {
+    const res = await fetch('https://tight-disk-c94b.clevelandbuilders.workers.dev/govee/v1/devices/control', {
       method: 'PUT',
       headers: {
         'Govee-API-Key': GOVEE_API_KEY,
