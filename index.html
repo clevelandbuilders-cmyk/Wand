@@ -730,6 +730,7 @@ function applyHouse(house){
 // ═══ START APP ═══
 function startApp(){
   initVoice();
+  goveeLoadDevices(); // auto-connect lights on start
   S.stack=['main'];
   buildSpellbook();buildDuelGrid();updateTopbar();updateXP();
   show('main',false);
