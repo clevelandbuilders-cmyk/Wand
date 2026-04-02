@@ -1143,12 +1143,19 @@ async function goveeControl(device, model, cmd) {
 }
 
 async function goveeLoadDevices() {
-  const data = await goveeGet('/devices');
-  if (data?.data?.devices) {
-    goveeDevices = data.data.devices;
-    goveeEnabled = true;
-    toast(`💡 ${goveeDevices.length} light${goveeDevices.length>1?'s':''} connected`);
-    return goveeDevices;
+  try {
+    const res = await fetch('https://tight-disk-c94b.clevelandbuilders.workers.dev/govee/openapi/router/api/v1/user/devices', {
+      headers: {'Govee-API-Key': GOVEE_API_KEY, 'Content-Type': 'application/json'}
+    });
+    const data = await res.json();
+    if (data?.data) {
+      goveeDevices = data.data;
+      goveeEnabled = true;
+      toast(`💡 Ari's room connected`);
+      return goveeDevices;
+    }
+  } catch(e) {
+    console.log('Load devices error:', e);
   }
   return [];
 }
