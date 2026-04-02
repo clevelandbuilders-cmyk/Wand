@@ -1153,47 +1153,57 @@ async function goveeLoadDevices() {
   return [];
 }
 
+
+// Ari's room - only light we control
+const ARI_DEVICE = '23:DC:5C:E7:53:7D:1C:6C';
+const ARI_MODEL = 'H6008';
+async function ariLight(cmd) { return await goveeControl(ARI_DEVICE, ARI_MODEL, cmd); }
+
 async function goveeSpellLight(spellKey) {
   if (!goveeEnabled || !goveeDevices.length) {
     toast('💡 Lights not connected');
     return;
   }
   const light = SPELL_LIGHTS[spellKey];
-  if (!light) {
-    toast('💡 No light for: ' + spellKey);
-    return;
-  }
-  toast('💡 ' + spellKey + ' → lights');
+  if (!light) return;
 
-  for (const dev of goveeDevices) {
-    const {device, model} = dev;
+  // Only control devices that support color
+  const colorDevices = goveeDevices.filter(d => 
+    d.supportCmds && d.supportCmds.includes('color')
+  );
+  const allDevices = goveeDevices;
+
+  for (const dev of allDevices) {
+    const {device, model, supportCmds} = dev;
+    const supportsColor = supportCmds && supportCmds.includes('color');
+    const supportsBrightness = supportCmds && supportCmds.includes('brightness');
 
     if (light.off) {
       await goveeControl(device, model, {name:'turn', value:'off'});
       continue;
     }
 
-    // Turn on first
+    // Turn on
     await goveeControl(device, model, {name:'turn', value:'on'});
 
-    // Set color
-    if (light.r !== undefined) {
+    // Color only for capable devices
+    if (supportsColor && light.r !== undefined) {
       await goveeControl(device, model, {
         name: 'color',
         value: {r: light.r, g: light.g, b: light.b}
       });
     }
 
-    // Set brightness
-    if (light.brightness) {
+    // Brightness for capable devices
+    if (supportsBrightness && light.brightness) {
       await goveeControl(device, model, {
         name: 'brightness',
         value: light.brightness
       });
     }
 
-    // Flash effect for attack spells
-    if (light.flash) {
+    // Flash effect
+    if (supportsColor && light.flash) {
       setTimeout(async () => {
         await goveeControl(device, model, {name:'brightness', value:20});
         setTimeout(async () => {
@@ -1203,7 +1213,7 @@ async function goveeSpellLight(spellKey) {
     }
 
     // Pulse effect for Expecto Patronum
-    if (light.pulse) {
+    if (supportsColor && light.pulse) {
       let pulseCount = 0;
       const pulseInterval = setInterval(async () => {
         pulseCount++;
@@ -1219,12 +1229,12 @@ async function goveeSpellLight(spellKey) {
     }
 
     // Reset to warm white after 4 seconds
-    setTimeout(async () => {
-      if (!light.off) {
+    if (supportsColor && !light.off) {
+      setTimeout(async () => {
         await goveeControl(device, model, {name:'color', value:{r:255, g:220, b:180}});
         await goveeControl(device, model, {name:'brightness', value:80});
-      }
-    }, 4000);
+      }, 4000);
+    }
   }
 }
 
