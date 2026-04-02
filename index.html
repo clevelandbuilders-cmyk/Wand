@@ -1160,7 +1160,6 @@ const ARI_MODEL = 'H6008';
 const PROXY = 'https://tight-disk-c94b.clevelandbuilders.workers.dev/govee';
 
 async function ariLight(cmd) {
-  // H6008 needs OpenAPI format
   const name = cmd.name;
   const value = cmd.value;
   
@@ -1172,8 +1171,6 @@ async function ariLight(cmd) {
   } else if (name === 'color') {
     const hex = ((value.r<<16)|(value.g<<8)|value.b);
     capability = {type:'devices.capabilities.color_setting', instance:'colorRgb', value: hex};
-  } else if (name === 'colorTem') {
-    capability = {type:'devices.capabilities.color_setting', instance:'colorTemperatureK', value: value};
   }
 
   try {
@@ -1181,17 +1178,19 @@ async function ariLight(cmd) {
       method: 'POST',
       headers: {'Content-Type':'application/json', 'Govee-API-Key': GOVEE_API_KEY},
       body: JSON.stringify({
-        requestId: 'spell-' + Date.now(),
+        requestId: 'wand-' + Date.now(),
         payload: {sku: ARI_MODEL, device: ARI_DEVICE, capability}
       })
     });
     const json = await res.json();
-    console.log('Ari light response:', JSON.stringify(json));
+    console.log('Ari:', JSON.stringify(json));
     return json;
   } catch(e) {
-    console.log('Ari light error:', e);
+    console.log('Ari error:', e);
+    toast('💡 ' + e.message);
   }
 }
+
 
 async function goveeSpellLight(spellKey) {
   if (!goveeEnabled || !goveeDevices.length) {
