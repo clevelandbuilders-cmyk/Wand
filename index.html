@@ -1292,6 +1292,7 @@ function startListening() {
   try {
     recognition.start();
     isListening = true;
+    snd('pairing');
     showListenIndicator('Speak the incantation…', true);
     
     // Auto stop after 4 seconds
