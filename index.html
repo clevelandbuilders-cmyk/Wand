@@ -124,7 +124,7 @@ linear-gradient(180deg,#0d0720 0%,#1a0f3e 50%,#0d0720 100%)}
 .spell-card-2x2.locked:hover{transform:none}
 .sc-bg{position:absolute;inset:0;background-size:cover;background-position:center;background-color:#2a1a0a}
 .sc-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.95) 0%,rgba(0,0,0,.3) 55%,transparent 100%)}
-.sc-gesture-wrap{position:absolute;top:2%;left:50%;transform:translateX(-50%);width:94%;height:65%;display:flex;align-items:center;justify-content:center}
+.sc-gesture-wrap{position:absolute;top:4%;left:0;right:0;bottom:25%;display:flex;align-items:center;justify-content:center}
 .sc-gesture-svg{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
 .sc-bottom{position:absolute;bottom:0;left:0;right:0;padding:8px 10px 12px;text-align:center}
 .sc-name{font-family:‘Cinzel’,serif;font-size:.72rem;color:#fff;letter-spacing:.04em;text-shadow:0 1px 4px rgba(0,0,0,.9)}
@@ -523,6 +523,7 @@ linear-gradient(180deg,#0d0720 0%,#1a0f3e 50%,#0d0720 100%)}
     <div class="modal-sub">Make sure your wand is charged and nearby</div>
     <div class="batt-row" id="battRow" style="display:none"><span>🔋</span><div class="batt-track"><div class="batt-fill" id="battFill" style="width:0%"></div></div><span id="battPct">--%</span></div>
     <button class="modal-btn" id="mBtn" onclick="connectWand()">Connect via Bluetooth</button>
+    <button class="modal-cancel" id="goveeBtn" onclick="goveeConnect()" style="margin-bottom:8px;border-color:rgba(80,200,120,.25);color:rgba(150,220,150,.8)">💡 Connect Lights</button>
     <button class="modal-cancel" onclick="closeWandModal()">Cancel</button>
   </div>
 </div>
@@ -651,12 +652,11 @@ function makeStars(){
 // ═══ GESTURE SVG ═══
 function gestureSvg(spellKey,w=160,h=150){
   const path=SPELL_GESTURE_PATHS[spellKey]||'M107,10L107,245';
-  // Calculate bounding box to center the path
-  return `<svg viewBox="15 10 185 240" width="${w}" height="${h}" fill="none" style="width:100%;height:100%;display:block">
-    <defs><filter id="g${spellKey}"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-    <path d="${path}" stroke="rgba(255,255,255,0.2)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  return `<svg viewBox="0 0 215 260" preserveAspectRatio="xMidYMid meet" fill="none" style="width:75%;height:75%;max-width:140px;max-height:140px;display:block;margin:auto">
+    <defs><filter id="g${spellKey}"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+    <path d="${path}" stroke="rgba(255,255,255,0.2)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
     <path d="${path}" stroke="rgba(255,255,255,0.98)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none" filter="url(#g${spellKey})"/>
-    <circle r="9" fill="#fff" opacity="0.95"><animateMotion dur="2.5s" repeatCount="indefinite"><mpath href="#mp${spellKey}"/></animateMotion></circle>
+    <circle r="8" fill="#fff" opacity="0.95"><animateMotion dur="2.5s" repeatCount="indefinite"><mpath href="#mp${spellKey}"/></animateMotion></circle>
     <path id="mp${spellKey}" d="${path}" fill="none"/>
   </svg>`;
 }
@@ -886,6 +886,7 @@ function castSpell(key){
   // Particles
   spawnPts(s.color);
   snd('correct');if(Math.random()<.3)setTimeout(randVoice,1200);
+  goveeSpellLight(key);
   sendLED(s.led||'AA8800');setTimeout(()=>sendCmd([{"command":"clearleds"}]),3000);
   // Stats
   S.cast++;S.castCount[key]=(S.castCount[key]||0)+1;
@@ -1033,7 +1034,150 @@ function onSpell(ev){
   }
 }
 
+async function goveeConnect() {
+  document.getElementById('goveeBtn').textContent = '💡 Connecting…';
+  const devices = await goveeLoadDevices();
+  if (devices.length) {
+    document.getElementById('goveeBtn').textContent = `💡 ${devices.length} Light${devices.length>1?'s':''} Connected`;
+    document.getElementById('goveeBtn').style.color = '#90e0a0';
+    document.getElementById('goveeBtn').style.borderColor = 'rgba(80,200,120,.5)';
+  } else {
+    document.getElementById('goveeBtn').textContent = '💡 Connect Lights';
+    toast('Could not connect to lights');
+  }
+}
+
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
+
+
+// ═══ GOVEE SMART HOME ═══
+const GOVEE_API_KEY = '3696008f-7d0e-4d44-aeb7-00e8805519d9';
+const GOVEE_BASE = 'https://developer-api.govee.com/v1';
+
+let goveeDevices = []; // discovered devices
+let goveeEnabled = false;
+
+// Spell to light color mapping
+const SPELL_LIGHTS = {
+  lumos:            {r:255, g:255, b:255, brightness:100, temp:6500},
+  nox:              {off:true},
+  incendio:         {r:255, g:60,  b:0,   brightness:100},
+  aguamenti:        {r:0,   g:100, b:255, brightness:80},
+  expecto_patronum: {r:200, g:220, b:255, brightness:100, pulse:true},
+  stupefy:          {r:255, g:0,   b:30,  brightness:100, flash:true},
+  confringo:        {r:255, g:40,  b:0,   brightness:100, flash:true},
+  glacius:          {r:100, g:200, b:255, brightness:70},
+  colovaria:        {r:255, g:0,   b:255, brightness:100},
+  revelio:          {r:255, g:220, b:100, brightness:90},
+  alohomora:        {r:255, g:180, b:50,  brightness:80},
+  wingardium_leviosa:{r:150,g:255, b:150, brightness:80},
+  expelliarmus:     {r:255, g:50,  b:50,  brightness:100, flash:true},
+  protego:          {r:180, g:180, b:255, brightness:90},
+  riddikulus:       {r:255, g:200, b:0,   brightness:100},
+  bombarda:         {r:255, g:80,  b:0,   brightness:100, flash:true},
+  accio:            {r:200, g:100, b:255, brightness:80},
+  reparo:           {r:100, g:255, b:150, brightness:70},
+  scourgify:        {r:200, g:240, b:255, brightness:80},
+  impedimenta:      {r:255, g:100, b:0,   brightness:80},
+};
+
+async function goveeGet(endpoint) {
+  try {
+    const res = await fetch(`${GOVEE_BASE}${endpoint}`, {
+      headers: {'Govee-API-Key': GOVEE_API_KEY}
+    });
+    return await res.json();
+  } catch(e) { return null; }
+}
+
+async function goveeControl(device, model, cmd) {
+  try {
+    await fetch(`${GOVEE_BASE}/devices/control`, {
+      method: 'PUT',
+      headers: {'Govee-API-Key': GOVEE_API_KEY, 'Content-Type': 'application/json'},
+      body: JSON.stringify({device, model, cmd})
+    });
+  } catch(e) {}
+}
+
+async function goveeLoadDevices() {
+  const data = await goveeGet('/devices');
+  if (data?.data?.devices) {
+    goveeDevices = data.data.devices;
+    goveeEnabled = true;
+    toast(`💡 ${goveeDevices.length} light${goveeDevices.length>1?'s':''} connected`);
+    return goveeDevices;
+  }
+  return [];
+}
+
+async function goveeSpellLight(spellKey) {
+  if (!goveeEnabled || !goveeDevices.length) return;
+  const light = SPELL_LIGHTS[spellKey];
+  if (!light) return;
+
+  for (const dev of goveeDevices) {
+    const {device, model} = dev;
+
+    if (light.off) {
+      await goveeControl(device, model, {name:'turn', value:'off'});
+      continue;
+    }
+
+    // Turn on first
+    await goveeControl(device, model, {name:'turn', value:'on'});
+
+    // Set color
+    if (light.r !== undefined) {
+      await goveeControl(device, model, {
+        name: 'color',
+        value: {r: light.r, g: light.g, b: light.b}
+      });
+    }
+
+    // Set brightness
+    if (light.brightness) {
+      await goveeControl(device, model, {
+        name: 'brightness',
+        value: light.brightness
+      });
+    }
+
+    // Flash effect for attack spells
+    if (light.flash) {
+      setTimeout(async () => {
+        await goveeControl(device, model, {name:'brightness', value:20});
+        setTimeout(async () => {
+          await goveeControl(device, model, {name:'brightness', value:light.brightness||100});
+        }, 200);
+      }, 300);
+    }
+
+    // Pulse effect for Expecto Patronum
+    if (light.pulse) {
+      let pulseCount = 0;
+      const pulseInterval = setInterval(async () => {
+        pulseCount++;
+        await goveeControl(device, model, {
+          name: 'brightness',
+          value: pulseCount % 2 === 0 ? 100 : 40
+        });
+        if (pulseCount >= 6) {
+          clearInterval(pulseInterval);
+          await goveeControl(device, model, {name:'brightness', value:80});
+        }
+      }, 400);
+    }
+
+    // Reset to warm white after 4 seconds
+    setTimeout(async () => {
+      if (!light.off) {
+        await goveeControl(device, model, {name:'color', value:{r:255, g:220, b:180}});
+        await goveeControl(device, model, {name:'brightness', value:80});
+      }
+    }, 4000);
+  }
+}
 
 window.addEventListener('load',init);
 </script>
