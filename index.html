@@ -1120,16 +1120,25 @@ async function goveeGet(endpoint) {
 
 async function goveeControl(device, model, cmd) {
   try {
+    const body = JSON.stringify({device, model, cmd});
     const res = await fetch('https://tight-disk-c94b.clevelandbuilders.workers.dev/govee/v1/devices/control', {
       method: 'PUT',
       headers: {
         'Govee-API-Key': GOVEE_API_KEY,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({device, model, cmd})
+      body: body
     });
-    return await res.json();
-  } catch(e) { console.log('Govee control error:', e); }
+    const json = await res.json();
+    console.log('Govee response:', JSON.stringify(json));
+    if(json.code && json.code !== 200) {
+      toast('💡 ' + (json.message || 'Light error'));
+    }
+    return json;
+  } catch(e) { 
+    console.log('Govee control error:', e);
+    toast('💡 Connection error');
+  }
 }
 
 async function goveeLoadDevices() {
@@ -1144,9 +1153,16 @@ async function goveeLoadDevices() {
 }
 
 async function goveeSpellLight(spellKey) {
-  if (!goveeEnabled || !goveeDevices.length) return;
+  if (!goveeEnabled || !goveeDevices.length) {
+    toast('💡 Lights not connected');
+    return;
+  }
   const light = SPELL_LIGHTS[spellKey];
-  if (!light) return;
+  if (!light) {
+    toast('💡 No light for: ' + spellKey);
+    return;
+  }
+  toast('💡 ' + spellKey + ' → lights');
 
   for (const dev of goveeDevices) {
     const {device, model} = dev;
