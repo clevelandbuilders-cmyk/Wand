@@ -43,7 +43,7 @@ linear-gradient(180deg,#0d0720 0%,#1a0f3e 50%,#0d0720 100%)}
 #profile{justify-content:flex-start;overflow-y:auto;padding:calc(44px + var(–sat)) 18px calc(60px + var(–sab))}
 .setup-hero{text-align:center;margin-bottom:24px;width:100%}
 .ph-title{font-family:‘Cinzel’,serif;font-size:1rem;color:var(–gold);letter-spacing:.08em;margin-bottom:4px}
-.ph-sub{font-size:.8rem;color:var(–text2);font-style:italic}
+.ph-sub{font-size:.8rem;color:rgba(240,208,128,.65);font-style:italic}
 .setup-block{width:100%;max-width:420px;margin-bottom:20px}
 .setup-lbl{font-family:‘Cinzel’,serif;font-size:.6rem;color:var(–gold);letter-spacing:.22em;text-transform:uppercase;margin-bottom:9px}
 .name-input{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(201,168,76,.25);border-radius:var(–r);padding:13px 16px;color:#f0d080!important;font-size:.95rem;font-family:‘Crimson Text’,serif;outline:none;text-align:center;letter-spacing:.06em;-webkit-text-fill-color:#f0d080!important;caret-color:#f0d080}
@@ -65,16 +65,16 @@ linear-gradient(180deg,#0d0720 0%,#1a0f3e 50%,#0d0720 100%)}
 .house-card.selected{border-color:var(–hs,var(–gold));box-shadow:0 0 24px rgba(201,168,76,.25)}
 .house-card.selected::before{opacity:1}
 .house-shield-img{width:56px;height:70px;object-fit:contain;margin:0 auto 8px;display:block;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
-.house-name-txt{font-family:‘Cinzel’,serif;font-size:.78rem;color:var(–text);margin-bottom:2px}
-.house-trait-txt{font-size:.64rem;color:var(–text2);font-style:italic}
+.house-name-txt{font-family:‘Cinzel’,serif;font-size:.78rem;color:var(–gold2);margin-bottom:2px}
+.house-trait-txt{font-size:.64rem;color:rgba(240,208,128,.6);font-style:italic}
 
 /* Patronus grid with real images */
 .pat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .pat-card{background:rgba(0,0,0,.35);border:1px solid rgba(201,168,76,.12);border-radius:9px;padding:8px 4px;cursor:pointer;text-align:center;transition:all .2s}
 .pat-card:hover,.pat-card.selected{border-color:rgba(160,200,255,.5);background:rgba(160,200,255,.08);box-shadow:0 0 12px rgba(160,200,255,.2)}
 .pat-img{width:52px;height:52px;object-fit:contain;margin:0 auto 4px;display:block;filter:drop-shadow(0 0 6px rgba(160,200,255,.3))}
-.pat-name{font-size:.58rem;color:var(–text2);letter-spacing:.04em}
-.begin-btn{width:100%;max-width:420px;background:linear-gradient(135deg,rgba(201,168,76,.22),rgba(201,168,76,.08));border:1px solid var(–gold);border-radius:30px;color:var(–gold2);font-family:‘Cinzel’,serif;font-size:.85rem;padding:15px;cursor:pointer;letter-spacing:.1em;transition:all .3s;margin-top:6px}
+.pat-name{font-size:.58rem;color:rgba(240,208,128,.7);letter-spacing:.04em}
+.begin-btn{width:100%;max-width:420px;background:linear-gradient(135deg,rgba(201,168,76,.22),rgba(201,168,76,.08));border:1px solid var(–gold);border-radius:30px;color:var(–gold2);text-shadow:0 0 8px rgba(201,168,76,.4);font-family:‘Cinzel’,serif;font-size:.85rem;padding:15px;cursor:pointer;letter-spacing:.1em;transition:all .3s;margin-top:6px}
 .begin-btn:hover{box-shadow:0 0 28px rgba(201,168,76,.35)}
 
 /* MAIN APP */
@@ -105,7 +105,7 @@ linear-gradient(180deg,#0d0720 0%,#1a0f3e 50%,#0d0720 100%)}
 .tab-panel.active{display:block}
 
 .bottom-nav{width:100%;display:flex;background:rgba(5,3,15,.92);border-top:1px solid rgba(201,168,76,.1);padding-bottom:var(–sab);flex-shrink:0;backdrop-filter:blur(14px)}
-.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;padding:9px 4px 7px;cursor:pointer;border:none;background:transparent;color:var(–text3);font-size:.54rem;letter-spacing:.06em;gap:3px;transition:all .2s;font-family:‘Cinzel’,serif}
+.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;padding:9px 4px 7px;cursor:pointer;border:none;background:transparent;color:rgba(201,168,76,.5);font-size:.54rem;letter-spacing:.06em;gap:3px;transition:all .2s;font-family:‘Cinzel’,serif}
 .nav-btn .ni{font-size:1.2rem;transition:all .2s}
 .nav-btn.active{color:var(–gold)}
 .nav-btn.active .ni{filter:drop-shadow(0 0 6px rgba(201,168,76,.7))}
@@ -114,7 +114,7 @@ linear-gradient(180deg,#0d0720 0%,#1a0f3e 50%,#0d0720 100%)}
 .sb-head{text-align:center;padding:12px 0 18px}
 .sb-head h2{font-family:‘Cinzel’,serif;font-size:1.1rem;color:var(–gold);letter-spacing:.08em}
 .sb-head p{font-size:.76rem;color:var(–text2);font-style:italic;margin-top:3px}
-.yr-label{font-family:‘Cinzel’,serif;font-size:.62rem;color:var(–gold);letter-spacing:.2em;text-transform:uppercase;border-left:2px solid var(–house-s);padding-left:8px;margin-bottom:10px;margin-top:4px}
+.yr-label{font-family:‘Cinzel’,serif;font-size:.62rem;color:var(–gold2);letter-spacing:.2em;text-transform:uppercase;border-left:2px solid var(–house-s);padding-left:8px;margin-bottom:10px;margin-top:4px}
 
 /* 2x2 spell card grid matching original */
 .spell-grid-2x2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
@@ -122,13 +122,13 @@ linear-gradient(180deg,#0d0720 0%,#1a0f3e 50%,#0d0720 100%)}
 .spell-card-2x2:hover{transform:scale(1.03);box-shadow:0 8px 30px rgba(0,0,0,.8)}
 .spell-card-2x2.locked{filter:brightness(.4) saturate(.2);cursor:default}
 .spell-card-2x2.locked:hover{transform:none}
-.sc-bg{position:absolute;inset:0;background-size:cover;background-position:center;background-color:#2a1a0a}
+.sc-bg{position:absolute;inset:0;background-size:cover;background-position:center;background-color:var(–text)}
 .sc-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.95) 0%,rgba(0,0,0,.3) 55%,transparent 100%)}
 .sc-gesture-wrap{position:absolute;top:4%;left:0;right:0;bottom:25%;display:flex;align-items:center;justify-content:center}
 .sc-gesture-svg{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
 .sc-bottom{position:absolute;bottom:0;left:0;right:0;padding:8px 10px 12px;text-align:center}
-.sc-name{font-family:‘Cinzel’,serif;font-size:.72rem;color:#fff;letter-spacing:.04em;text-shadow:0 1px 4px rgba(0,0,0,.9)}
-.sc-pronunc{font-size:.58rem;color:rgba(232,217,176,.5);font-style:italic;margin-top:1px}
+.sc-name{font-family:‘Cinzel’,serif;font-size:.72rem;color:var(–gold2);letter-spacing:.04em;text-shadow:0 1px 4px rgba(0,0,0,.9)}
+.sc-pronunc{font-size:.58rem;color:rgba(240,208,128,.6);font-style:italic;margin-top:1px}
 .sc-stars{display:flex;justify-content:center;gap:3px;margin-top:4px;font-size:.6rem}
 .sc-star{opacity:.25;color:var(–gold)}
 .sc-star.on{opacity:1}
@@ -137,16 +137,16 @@ linear-gradient(180deg,#0d0720 0%,#1a0f3e 50%,#0d0720 100%)}
 /* SPELL DETAIL */
 #detail{justify-content:flex-start;overflow-y:auto}
 .det-top{width:100%;display:flex;align-items:center;padding:12px 14px;padding-top:calc(12px + var(–sat));background:rgba(0,0,0,.5);border-bottom:1px solid rgba(201,168,76,.1);gap:11px;flex-shrink:0;backdrop-filter:blur(14px)}
-.back-btn{background:none;border:none;color:var(–gold);font-size:1.1rem;cursor:pointer;padding:5px;line-height:1;font-family:‘Cinzel’,serif}
+.back-btn{background:none;border:none;color:var(–gold2);font-size:1.3rem;cursor:pointer;padding:5px;line-height:1;font-family:‘Cinzel’,serif;text-shadow:0 0 8px rgba(201,168,76,.5)}
 .det-top h3{font-family:‘Cinzel’,serif;font-size:.88rem;color:var(–text);letter-spacing:.06em}
 
 /* Parchment hero card */
 .det-hero-card{width:calc(100% - 28px);margin:14px auto 0;border-radius:16px;overflow:hidden;position:relative;min-height:280px;box-shadow:0 8px 40px rgba(0,0,0,.7);border:1px solid rgba(201,168,76,.2)}
-.det-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;background-color:#2a1a0a}
+.det-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;background-color:var(–text)}
 .det-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.97) 0%,rgba(0,0,0,.5) 50%,rgba(0,0,0,.1) 100%)}
 .det-hero-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;padding:16px 16px 20px}
 .det-gesture-svg{width:160px;height:150px;filter:drop-shadow(0 0 14px rgba(255,255,255,.35))}
-.det-spell-name{font-family:‘Cinzel’,serif;font-size:1.4rem;color:#fff;text-align:center;letter-spacing:.06em;margin-top:8px;text-shadow:0 2px 12px rgba(0,0,0,.9)}
+.det-spell-name{font-family:‘Cinzel’,serif;font-size:1.4rem;color:var(–gold2);text-align:center;letter-spacing:.06em;margin-top:8px;text-shadow:0 2px 12px rgba(0,0,0,.9)}
 .det-pronounce{font-size:.76rem;color:rgba(232,217,176,.5);font-style:italic;text-align:center;margin-top:2px;letter-spacing:.08em}
 .det-type-badge{background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.28);border-radius:12px;padding:3px 10px;font-size:.6rem;color:var(–gold);font-family:‘Cinzel’,serif;letter-spacing:.1em;margin-top:8px}
 .det-pips{display:flex;gap:8px;margin-top:12px}
@@ -159,8 +159,8 @@ linear-gradient(180deg,#0d0720 0%,#1a0f3e 50%,#0d0720 100%)}
 .det-body{padding:16px 14px 100px;width:100%}
 .det-sec-title{font-family:‘Cinzel’,serif;font-size:.6rem;color:var(–gold);letter-spacing:.22em;text-transform:uppercase;margin-bottom:8px;margin-top:18px;display:flex;align-items:center;gap:8px}
 .det-sec-title::after{content:’’;flex:1;height:1px;background:rgba(201,168,76,.12)}
-.det-lore{font-size:.86rem;line-height:1.75;color:rgba(232,217,176,.7);font-style:italic}
-.howto-card{background:rgba(0,0,0,.3);border:1px solid rgba(201,168,76,.1);border-radius:var(–r);padding:13px;font-size:.84rem;line-height:1.7;color:rgba(232,217,176,.7)}
+.det-lore{font-size:.86rem;line-height:1.75;color:rgba(240,208,128,.8);font-style:italic}
+.howto-card{background:rgba(0,0,0,.3);border:1px solid rgba(201,168,76,.1);border-radius:var(–r);padding:13px;font-size:.84rem;line-height:1.7;color:rgba(240,208,128,.85)}
 .howto-card strong{color:var(–gold2)}
 .det-actions{position:fixed;bottom:0;left:0;right:0;padding:10px 14px;padding-bottom:calc(10px + var(–sab));background:rgba(5,3,15,.95);border-top:1px solid rgba(201,168,76,.1);display:flex;gap:10px;backdrop-filter:blur(14px)}
 .act{flex:1;padding:13px;border-radius:var(–r);border:1px solid rgba(201,168,76,.18);background:rgba(255,255,255,.04);color:var(–text);font-family:‘Cinzel’,serif;font-size:.72rem;cursor:pointer;transition:all .2s;text-align:center;letter-spacing:.05em}
@@ -193,10 +193,10 @@ linear-gradient(180deg,#0d0720 0%,#1a0f3e 50%,#0d0720 100%)}
 
 /* Casting card - parchment with real background image */
 .cast-card{position:relative;z-index:2;width:82%;max-width:300px;border-radius:16px;overflow:hidden;box-shadow:0 8px 50px rgba(0,0,0,.8);border:1px solid rgba(201,168,76,.2);padding:16px 14px 20px;display:flex;flex-direction:column;align-items:center;min-height:260px}
-.cast-card-bg{position:absolute;inset:0;background-size:cover;background-position:center;background-color:#2a1a0a}
+.cast-card-bg{position:absolute;inset:0;background-size:cover;background-position:center;background-color:var(–text)}
 .cast-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.45) 60%,rgba(0,0,0,.1) 100%)}
 .cast-gesture-svg{position:relative;z-index:2;width:150px;height:130px;filter:drop-shadow(0 0 16px rgba(255,255,255,.4))}
-.cast-spell-name{position:relative;z-index:2;font-family:‘Cinzel’,serif;font-size:1.15rem;color:#fff;text-align:center;letter-spacing:.06em;margin-top:6px}
+.cast-spell-name{position:relative;z-index:2;font-family:‘Cinzel’,serif;font-size:1.15rem;color:var(–gold2);text-align:center;letter-spacing:.06em;margin-top:6px}
 .cast-spell-name.reveal{animation:cReveal .6s cubic-bezier(.16,1,.3,1) forwards}
 @keyframes cReveal{0%{opacity:0;transform:scale(.5) translateY(10px);letter-spacing:.3em}100%{opacity:1;transform:scale(1) translateY(0);letter-spacing:.06em}}
 .cast-pronounce{position:relative;z-index:2;font-size:.68rem;color:rgba(232,217,176,.45);font-style:italic;text-align:center;margin-top:2px;letter-spacing:.08em}
@@ -233,7 +233,7 @@ linear-gradient(180deg,#0d0720 0%,#1a0f3e 50%,#0d0720 100%)}
 .hp-val{font-size:.64rem;color:var(–text2);margin-top:3px}
 .duel-vs{font-family:‘Cinzel’,serif;font-size:1.2rem;color:var(–gold);align-self:center;flex-shrink:0}
 .duel-status-box{background:rgba(0,0,0,.3);border:1px solid rgba(201,168,76,.08);border-radius:var(–r);padding:11px;text-align:center;margin-bottom:12px}
-.dsb-txt{font-size:.86rem;color:var(–text);margin-bottom:4px}
+.dsb-txt{font-size:.86rem;color:var(–text);text-shadow:0 1px 3px rgba(0,0,0,.5);margin-bottom:4px}
 .dsb-last{font-size:.72rem;color:var(–text2);font-style:italic}
 .duel-spell-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%}
 .ds-btn{background:rgba(0,0,0,.3);border:1px solid rgba(201,168,76,.1);border-radius:var(–r);padding:11px 6px;text-align:center;cursor:pointer;transition:all .2s}
@@ -285,7 +285,7 @@ linear-gradient(180deg,#0d0720 0%,#1a0f3e 50%,#0d0720 100%)}
 .modal-wrap.show .modal-sheet{transform:translateY(0)}
 .modal-handle{width:38px;height:3px;background:rgba(255,255,255,.12);border-radius:2px;margin:0 auto 14px}
 .modal-wand{font-size:2.6rem;text-align:center;display:block;margin-bottom:10px;filter:drop-shadow(0 0 12px rgba(201,168,76,.5));animation:wandFloat 3s ease-in-out infinite}
-.modal-title{font-family:‘Cinzel’,serif;font-size:.95rem;color:var(–text);text-align:center;margin-bottom:3px;letter-spacing:.06em}
+.modal-title{font-family:‘Cinzel’,serif;font-size:.95rem;color:var(–gold2);text-align:center;margin-bottom:3px;letter-spacing:.06em}
 .modal-sub{font-size:.76rem;color:var(–text2);text-align:center;font-style:italic;margin-bottom:16px}
 .batt-row{display:flex;align-items:center;gap:9px;background:rgba(0,0,0,.3);border:1px solid rgba(201,168,76,.1);border-radius:var(–r);padding:10px 13px;margin-bottom:12px}
 .batt-track{flex:1;height:6px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden}
@@ -297,8 +297,13 @@ linear-gradient(180deg,#0d0720 0%,#1a0f3e 50%,#0d0720 100%)}
 .toast.show{transform:translateX(-50%) translateY(0)}
 .browser-warn{position:fixed;top:calc(8px + var(–sat));left:10px;right:10px;background:rgba(100,40,0,.92);border:1px solid rgba(201,100,20,.45);border-radius:var(–r);padding:9px 13px;font-size:.74rem;color:rgba(255,180,100,.9);z-index:500;display:none;backdrop-filter:blur(10px)}
 .browser-warn.show{display:block}
-</style>
 
+/* Global text color override - no black text */
+
+- { -webkit-tap-highlight-color: transparent; }
+  input, button, select, textarea { color: var(–gold2); }
+
+</style>
 </head>
 <body>
 <div class="starfield" id="starfield"></div>
@@ -1054,17 +1059,15 @@ function onSpell(ev){
   let name='';for(const b of bytes){if(b>31&&b<127&&b!==36)name+=String.fromCharCode(b);}
   name=name.trim().toLowerCase();
   if(name.length>2){
-    // Check our mapping first, then fall back to direct match
     const mappedKey = WAND_SPELL_MAP[name] || 
       SPELLS.find(x=>x.key.replace(/_/g,' ')===name||x.key===name.replace(/ /g,'_'))?.key ||
       name.replace(/ /g,'_');
-    // Wand motion detected - start voice listening instead of auto-casting
-    // This lets the kid say the spell name
-    if (cur !== 'casting') goCasting();
+    const cur=document.querySelector('.screen.active')?.id;
+    if(cur!=='casting'&&cur!=='duel') goCasting();
     startListening();
-    // Also cast the wand's detected spell as fallback after 4s if no voice
     const fallbackSpell = mappedKey;
-    listenTimeout = setTimeout(() => {
+    if(listenTimeout) clearTimeout(listenTimeout);
+    listenTimeout = setTimeout(()=>{
       stopListening();
       castSpell(fallbackSpell);
       goveeSpellLight(fallbackSpell);
