@@ -427,7 +427,7 @@ linear-gradient(180deg,#0d0720 0%,#1a0f3e 50%,#0d0720 100%)}
 
 <div class="screen" id="casting">
   <div class="cast-top">
-    <button class="back-btn" onclick="goBack()">←</button>
+    <button class="back-btn" onclick="goBack()" style="background:rgba(0,0,0,.4);border-radius:20px;padding:6px 12px;">←</button>
     <div style="flex:1"></div>
     <div class="wand-pill" id="castPill">
       <div class="wpip" id="castWpip"></div>
@@ -446,7 +446,7 @@ linear-gradient(180deg,#0d0720 0%,#1a0f3e 50%,#0d0720 100%)}
       <div class="cast-pronounce" id="castPronounce">Wave your wand</div>
     </div>
     <img class="cast-wand-img" id="castWandImg" src="assets/images/ui/wand_defiant_hand.webp" alt="">
-    <div class="cast-ready-txt" id="castReadyTxt">Hold the touch sensor and cast a spell</div>
+    <div class="cast-ready-txt" id="castReadyTxt">Wave your wand to cast a spell</div>
   </div>
 </div>
 
@@ -1022,13 +1022,41 @@ function syncWandUI(){
 }
 async function sendCmd(cmds){if(!cmdChr)return;try{await cmdChr.writeValueWithoutResponse(new TextEncoder().encode(JSON.stringify(cmds)));}catch(e){}}
 function sendLED(hex){sendCmd([0,1,2,3].map(g=>({command:'changeled',group:g,color:hex,duration:0.5})));}
+// Map raw wand gesture names to our spell keys
+const WAND_SPELL_MAP = {
+  'serpensortia': 'lumos',
+  'lumos': 'expelliarmus',
+  'protego': 'nox',
+  'nox': 'protego',
+  'accio': 'accio',
+  'wingardium leviosa': 'wingardium_leviosa',
+  'expelliarmus': 'expelliarmus',
+  'stupefy': 'stupefy',
+  'incendio': 'incendio',
+  'aguamenti': 'aguamenti',
+  'expecto patronum': 'expecto_patronum',
+  'riddikulus': 'riddikulus',
+  'alohomora': 'alohomora',
+  'reparo': 'reparo',
+  'revelio': 'revelio',
+  'bombarda': 'bombarda',
+  'confringo': 'confringo',
+  'petrificus totalus': 'petrificus_totalus',
+  'impedimenta': 'impedimenta',
+  'flipendo': 'flipendo',
+  'colovaria': 'colovaria',
+};
+
 function onSpell(ev){
   const bytes=new Uint8Array(ev.target.value.buffer);
   let name='';for(const b of bytes){if(b>31&&b<127&&b!==36)name+=String.fromCharCode(b);}
-  name=name.trim();
+  name=name.trim().toLowerCase();
   if(name.length>2){
-    const s=SPELLS.find(x=>x.key.replace(/_/g,' ').toLowerCase()===name.toLowerCase()||x.key.toLowerCase()===name.toLowerCase().replace(/ /g,'_'));
-    castSpell(s?.key||name.toLowerCase().replace(/ /g,'_'));
+    // Check our mapping first, then fall back to direct match
+    const mappedKey = WAND_SPELL_MAP[name] || 
+      SPELLS.find(x=>x.key.replace(/_/g,' ')===name||x.key===name.replace(/ /g,'_'))?.key ||
+      name.replace(/ /g,'_');
+    castSpell(mappedKey);
     const cur=document.querySelector('.screen.active')?.id;
     if(cur!=='casting'&&cur!=='duel')goCasting();
   }
@@ -1092,12 +1120,16 @@ async function goveeGet(endpoint) {
 
 async function goveeControl(device, model, cmd) {
   try {
-    await fetch(`${GOVEE_BASE}/devices/control`, {
+    const res = await fetch('https://developer-api.govee.com/v1/devices/control', {
       method: 'PUT',
-      headers: {'Govee-API-Key': GOVEE_API_KEY, 'Content-Type': 'application/json'},
+      headers: {
+        'Govee-API-Key': GOVEE_API_KEY,
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({device, model, cmd})
     });
-  } catch(e) {}
+    return await res.json();
+  } catch(e) { console.log('Govee control error:', e); }
 }
 
 async function goveeLoadDevices() {
