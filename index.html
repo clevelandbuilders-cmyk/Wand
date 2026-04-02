@@ -1154,10 +1154,44 @@ async function goveeLoadDevices() {
 }
 
 
-// Ari's room - only light we control
+// Ari's room - H6008 uses OpenAPI endpoint
 const ARI_DEVICE = '23:DC:5C:E7:53:7D:1C:6C';
 const ARI_MODEL = 'H6008';
-async function ariLight(cmd) { return await goveeControl(ARI_DEVICE, ARI_MODEL, cmd); }
+const PROXY = 'https://tight-disk-c94b.clevelandbuilders.workers.dev/govee';
+
+async function ariLight(cmd) {
+  // H6008 needs OpenAPI format
+  const name = cmd.name;
+  const value = cmd.value;
+  
+  let capability = {};
+  if (name === 'turn') {
+    capability = {type:'devices.capabilities.on_off', instance:'powerSwitch', value: value==='on'?1:0};
+  } else if (name === 'brightness') {
+    capability = {type:'devices.capabilities.range', instance:'brightness', value: value};
+  } else if (name === 'color') {
+    const hex = ((value.r<<16)|(value.g<<8)|value.b);
+    capability = {type:'devices.capabilities.color_setting', instance:'colorRgb', value: hex};
+  } else if (name === 'colorTem') {
+    capability = {type:'devices.capabilities.color_setting', instance:'colorTemperatureK', value: value};
+  }
+
+  try {
+    const res = await fetch(`${PROXY}/openapi/router/api/v1/device/control`, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json', 'Govee-API-Key': GOVEE_API_KEY},
+      body: JSON.stringify({
+        requestId: 'spell-' + Date.now(),
+        payload: {sku: ARI_MODEL, device: ARI_DEVICE, capability}
+      })
+    });
+    const json = await res.json();
+    console.log('Ari light response:', JSON.stringify(json));
+    return json;
+  } catch(e) {
+    console.log('Ari light error:', e);
+  }
+}
 
 async function goveeSpellLight(spellKey) {
   if (!goveeEnabled || !goveeDevices.length) {
